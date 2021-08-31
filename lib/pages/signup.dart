@@ -9,6 +9,8 @@ const kPrimaryLightColor = Colors.white;
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
 
+  static const String routeName = "/signup";
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
