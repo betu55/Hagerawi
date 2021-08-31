@@ -9,6 +9,8 @@ const kPrimaryLightColor = Colors.white;
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
+  static const String routeName = "/login";
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
