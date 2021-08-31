@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'files/sidebar.dart';
 import 'files/cards.dart';
+import 'pages/login.dart';
 
 void doSth() {
   print("working progress real <.>");
@@ -13,7 +14,10 @@ void doSth() {
 void main() {
   GestureBinding.instance?.resamplingEnabled = true;
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-  runApp(EventsPage());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Login(),
+  ));
 }
 
 class EventsPage extends StatefulWidget {
