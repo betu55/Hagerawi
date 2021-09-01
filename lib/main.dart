@@ -5,6 +5,7 @@ import 'package:hagerawi_app/pages/quiz.dart';
 import 'package:hagerawi_app/pages/signup.dart';
 import 'package:hagerawi_app/pages/login.dart';
 import 'package:hagerawi_app/pages/events.dart';
+import 'package:hagerawi_app/pages/single_event.dart';
 
 void doSth() {
   print("working progress real <.>");
@@ -17,13 +18,14 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: Signup.routeName,
+    initialRoute: SingleEvent.routeName,
 
     routes: {
       Signup.routeName: (BuildContext context) => Signup(),
       Login.routeName: (BuildContext context) => Login(),
       Quiz.routeName: (BuildContext context) => Quiz(),
       EventsPage.routeName: (BuildContext context) => EventsPage(),
+      SingleEvent.routeName: (BuildContext context) => SingleEvent(),
     },
   ));
 }
