@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hagerawi_app/main.dart';
 import 'package:hagerawi_app/pages/login.dart';
 
+import 'events.dart';
+
 const kPrimaryColor = Color(0xff777777);
 const kPrimaryLightColor = Colors.white;
 
