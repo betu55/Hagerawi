@@ -45,7 +45,7 @@ class _DataTableExample extends State<MyApp> {
                   ],  
                   rows: [  
                     DataRow(cells: [  
-                      
+                      DataCell(Text('Title')),  
                       DataCell( Padding(
                             padding: EdgeInsets.all(2.0),
                             
@@ -60,7 +60,7 @@ class _DataTableExample extends State<MyApp> {
                        
                     ]),  
                     DataRow(cells: [  
-                      
+                      DataCell(Text('Content')),  
                       DataCell(Padding(
     padding: EdgeInsets.all(2.0),
     
@@ -76,7 +76,7 @@ class _DataTableExample extends State<MyApp> {
                       
                     ]),  
                     DataRow(cells: [  
-                      
+                      DataCell(Text('Author')),  
                       DataCell(Padding(
     padding: EdgeInsets.all(2.0),
     
@@ -92,7 +92,7 @@ class _DataTableExample extends State<MyApp> {
                         
                     ]),  
                     DataRow(cells: [  
-                      
+                      DataCell(Text('15')),  
                       DataCell(Padding(
     padding: EdgeInsets.all(2.0),
     
