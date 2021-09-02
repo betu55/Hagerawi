@@ -4,6 +4,8 @@ import 'package:hagerawi_app/main.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/signup.dart';
 
+import 'events.dart';
+
 const kPrimaryColor = Color(0xff777777);
 const kPrimaryLightColor = Colors.white;
 
