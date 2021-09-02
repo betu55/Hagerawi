@@ -55,53 +55,97 @@ class _SingleEventState extends State<SingleEvent> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Card(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Container(
-                            color: darkBlueHex,
-                            width: size.width * 0.3,
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              "Location : ስለ ዲሲ ማዘጋጃ ቤት ቤተመፃህፍት ጥያቄዎች ካሉዎት ወደ ቢሯችን በ (202) 727‐0321 መደወል ይችላሉ ፡፡ ",
-                              style: TextStyle(
-                                color: warmOrangeHex,
-                                fontSize: 15,
-                              ),
-                            ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            // bottomRight: Radius.circular(60),
+                            topLeft: Radius.circular(30),
                           ),
-                        ),
-                        Card(
-                          margin: EdgeInsets.only(bottom: 10),
-                          child: Container(
-                            color: darkBlueHex,
-                            width: size.width * 0.3,
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              "Description: ቢሮዎቻችንን ሲጎበኙ ወይም ሲደውሉልን የሰራተኞቻችን አባል እርስዎን ልንረዳዎ እንድንችል በአስተርጓሚ በአካል ሊያገናኝዎት ይችላል ፡፡",
-                              style: TextStyle(
-                                color: warmOrangeHex,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Card(
-                          margin: EdgeInsets.only(bottom: 10),
-                          child: Consumer<ColorProvider>(
-                              builder: (context, state, _) {
-                            return Container(
-                              color: state.color,
+                          child: Card(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            child: Container(
+                              color: darkBlueHex,
                               width: size.width * 0.3,
                               padding: EdgeInsets.all(10),
                               child: Text(
-                                "Time: 2:30",
+                                "Location : ስለ ዲሲ ማዘጋጃ ቤት ቤተመፃህፍት ጥያቄዎች ካሉዎት ወደ ቢሯችን በ (202) ",
                                 style: TextStyle(
                                   color: warmOrangeHex,
                                   fontSize: 15,
                                 ),
                               ),
-                            );
-                          }),
+                            ),
+                          ),
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            // bottomRight: Radius.circular(60),
+                            topLeft: Radius.circular(30),
+                          ),
+                          child: Card(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: Container(
+                              color: darkBlueHex,
+                              width: size.width * 0.3,
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                "Description: ቢሮዎቻችንን ሲጎበኙ ወይም ሲደውሉልን የሰራተኞቻችን አባል እርስዎን ልንረዳዎ እንድንችል በአስተርጓሚ በአካል ሊያገናኝዎት ይችላል ፡፡",
+                                style: TextStyle(
+                                  color: warmOrangeHex,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                // bottomRight: Radius.circular(60),
+                                topLeft: Radius.circular(15),
+                              ),
+                              child: Card(
+                                margin: EdgeInsets.only(bottom: 10),
+                                child: Container(
+                                  color: darkBlueHex,
+                                  width: size.width * 0.3,
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    "Time: 2:30",
+                                    style: TextStyle(
+                                      color: warmOrangeHex,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Consumer<ColorProvider>(
+                              builder: (context, state, _) {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    // bottomRight: Radius.circular(60),
+                                    topLeft: Radius.circular(15),
+                                  ),
+                                  child: Card(
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    child: Container(
+                                      color: state.color,
+                                      width: size.width * 0.3,
+                                      padding: EdgeInsets.all(10),
+                                      child: Text(
+                                        "Attending",
+                                        style: TextStyle(
+                                          color: warmOrangeHex,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          ],
                         ),
                       ],
                     ),
@@ -111,6 +155,7 @@ class _SingleEventState extends State<SingleEvent> {
                     children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          primary: goingColor,
                           // primary: yellowtext,
                           padding: EdgeInsets.symmetric(
                               vertical: 20, horizontal: 40),
@@ -120,18 +165,20 @@ class _SingleEventState extends State<SingleEvent> {
                         },
                         child: Text("Yes, I am going",
                             style: TextStyle(
-                              // backgroundColor: goingColor,
-                              // color: yellowtext,
+                              // backgroundColor: warmOrangeHex,
                               fontWeight: FontWeight.w300,
                             )),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          primary: goingColor,
                           // primary: yellowtext,
                           padding: EdgeInsets.symmetric(
                               vertical: 20, horizontal: 40),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          colorProvider.changeColor(Colors.red);
+                        },
                         child: Text("No, I am not going",
                             style: TextStyle(
                               // backgroundColor: warmOrangeHex,

@@ -8,4 +8,9 @@ class ColorProvider extends ChangeNotifier {
     this.color = color;
     notifyListeners();
   }
+
+  void changeColor2(Color color) {
+    this.color = color;
+    notifyListeners();
+  }
 }
