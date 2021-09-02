@@ -5,15 +5,15 @@ import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/components/cards.dart';
 
 // ignore: camel_case_types
-class EventsPage extends StatefulWidget {
-  const EventsPage({Key? key}) : super(key: key);
-  static const String routeName = '/events';
+class Feeds extends StatefulWidget {
+  const Feeds({Key? key}) : super(key: key);
+  static const String routeName = '/feeds';
 
   @override
-  _EventsPageState createState() => _EventsPageState();
+  _FeedsState createState() => _FeedsState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _FeedsState extends State<Feeds> {
   final _myKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -116,7 +116,7 @@ class _EventsPageState extends State<EventsPage> {
                           ),
                         ),
                         Text(
-                          "Why dont you try searching for an Event?",
+                          "Why dont you try searching for a feed?",
                           style: TextStyle(
                             color: Colors.grey.shade200.withAlpha(120),
                             fontSize: 16,
