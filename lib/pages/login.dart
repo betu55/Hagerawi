@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hagerawi_app/main.dart';
+import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/signup.dart';
 
 import 'events.dart';
