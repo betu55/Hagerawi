@@ -32,6 +32,7 @@ class _FeedsState extends State<Feeds> {
       //   ),
       // ),
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         key: _myKey,
         drawer: Navbar(),
         body: SafeArea(
@@ -47,7 +48,21 @@ class _FeedsState extends State<Feeds> {
                     alignment: Alignment.center,
                     height: (MediaQuery.of(context).size.height) / 4,
                     width: double.infinity,
-
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade500,
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.grey.shade600,
+                          Colors.blueGrey.shade800,
+                        ],
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
                     //this is the top part where your username and the search bar are
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
