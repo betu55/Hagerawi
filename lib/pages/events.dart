@@ -31,6 +31,7 @@ class _EventsPageState extends State<EventsPage> {
       //   ),
       // ),
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         key: _myKey,
         drawer: Navbar(),
         body: SafeArea(
