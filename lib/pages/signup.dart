@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hagerawi_app/components/field.dart';
+import 'package:hagerawi_app/components/fields.dart';
 import 'package:hagerawi_app/pages/login.dart';
 
 const kPrimaryColor = Color(0xff777777);
