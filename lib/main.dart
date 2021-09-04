@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hagerawi_app/pages/feeds.dart';
 import 'package:hagerawi_app/pages/quiz.dart';
 import 'package:hagerawi_app/pages/signup.dart';
 import 'package:hagerawi_app/pages/login.dart';
@@ -26,6 +27,7 @@ void main() {
       Quiz.routeName: (BuildContext context) => Quiz(),
       EventsPage.routeName: (BuildContext context) => EventsPage(),
       SingleEvent.routeName: (BuildContext context) => SingleEvent(),
+      Feeds.routeName: (BuildContext context) => Feeds(),
     },
   ));
 }

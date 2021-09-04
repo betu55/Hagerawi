@@ -1,19 +1,20 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hagerawi_app/components/fields.dart';
 import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/components/cards.dart';
 
 // ignore: camel_case_types
-class EventsPage extends StatefulWidget {
-  const EventsPage({Key? key}) : super(key: key);
-  static const String routeName = '/events';
+class Feeds extends StatefulWidget {
+  const Feeds({Key? key}) : super(key: key);
+  static const String routeName = '/feeds';
 
   @override
-  _EventsPageState createState() => _EventsPageState();
+  _FeedsState createState() => _FeedsState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _FeedsState extends State<Feeds> {
   final _myKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -41,7 +42,6 @@ class _EventsPageState extends State<EventsPage> {
               Container(
                 color: Colors.grey.shade800,
               ),
-              //this is the top part where your username and the search bar are
               Column(
                 children: [
                   Container(
@@ -63,6 +63,7 @@ class _EventsPageState extends State<EventsPage> {
                         bottomLeft: Radius.circular(20),
                       ),
                     ),
+                    //this is the top part where your username and the search bar are
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -117,7 +118,7 @@ class _EventsPageState extends State<EventsPage> {
                           ),
                         ),
                         Text(
-                          "Why dont you try searching for an Event?",
+                          "Why dont you try searching for a feed?",
                           style: TextStyle(
                             color: Colors.grey.shade200.withAlpha(120),
                             fontSize: 16,
@@ -126,79 +127,53 @@ class _EventsPageState extends State<EventsPage> {
                         ),
                         SizedBox(height: 10),
                         Expanded(
-                            child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 280,
-                                child: TextField(
-                                  style: TextStyle(height: 1.5),
-                                  cursorColor: Colors.grey.shade600,
-                                  cursorHeight: 24,
-                                  textAlignVertical: TextAlignVertical.center,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      color: Colors.blueGrey,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(
-                                      vertical: 1,
-                                      horizontal: 12,
-                                    ),
-                                    focusColor: Colors.red,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Colors.blueGrey),
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                    width: 280,
+                                    child: InputField("Enter a search key")),
+                                SizedBox(width: 5),
+                                Material(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.grey.shade200.withAlpha(120),
+                                  child: InkWell(
                                       borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    hintText: 'Enter a search term',
-                                    fillColor:
-                                        Colors.grey.shade200.withAlpha(120),
-                                    filled: true,
-                                  ),
+                                      onTap: () {
+                                        print("searching...");
+                                      },
+                                      splashColor:
+                                          Colors.blueGrey.withAlpha(100),
+                                      child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Icon(
+                                          Icons.search,
+                                          color: Colors.blueGrey,
+                                          size: 26,
+                                        ),
+                                      )),
                                 ),
-                              ),
-                              SizedBox(width: 5),
-                              Material(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey.shade200.withAlpha(120),
-                                child: InkWell(
-                                    borderRadius: BorderRadius.circular(10),
-                                    onTap: () {
-                                      print("searching...");
-                                    },
-                                    splashColor: Colors.blueGrey.withAlpha(100),
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Icon(
-                                        Icons.search,
-                                        color: Colors.blueGrey,
-                                        size: 26,
-                                      ),
-                                    )),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        )),
+                        ),
                         SizedBox(height: 20)
                       ],
                     ),
                   ),
                   Expanded(
                     child: ListView.builder(
-                        itemCount: 50,
-                        itemBuilder: (BuildContext context, i) {
-                          return TheCard();
-                        }),
+                      itemCount: 50,
+                      itemBuilder: (BuildContext context, i) {
+                        return TheCard();
+                      },
+                    ),
                   ),
                 ],
               ),

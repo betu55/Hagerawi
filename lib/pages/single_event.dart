@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hagerawi_app/files/cards.dart';
-import 'package:hagerawi_app/files/sidebar.dart';
+import 'package:hagerawi_app/components/cards.dart';
+import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/providers/color_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +47,7 @@ class _SingleEventState extends State<SingleEvent> {
               // width: 300,
               child: Column(
                 children: [
-                  cards[0],
+                  TheCard(),
                   Container(
                     // width: size.width,
                     height: 150,

@@ -33,9 +33,6 @@ class Quiz extends StatelessWidget {
     );
   }
 
-  // Widget choices(String c) {
-  //   return Choices(c);
-  // }
 }
 
 class Choices extends StatefulWidget {
