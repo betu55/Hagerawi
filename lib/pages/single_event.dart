@@ -12,10 +12,10 @@ class SingleEvent extends StatefulWidget {
 }
 
 class _SingleEventState extends State<SingleEvent> {
-  final colorProvider = ColorProvider(Color(0xff023047));
+  final colorProvider = ColorProvider(Colors.grey.shade500);
 
   Color goingColor = Colors.lightBlue.shade500;
-  Color darkBlueHex = Color(0xff023047);
+  Color darkBlueHex = Colors.grey.shade500;
   Color darkgreyHex = Color(0xff777777);
   Color warmOrangeHex = Color(0xffccc5b9);
   Color warmOrangeHexBtn = Color(0xffccc5b9);
@@ -55,90 +55,67 @@ class _SingleEventState extends State<SingleEvent> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            // bottomRight: Radius.circular(60),
-                            topLeft: Radius.circular(30),
-                          ),
-                          child: Card(
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                            child: Container(
-                              color: darkBlueHex,
-                              width: size.width * 0.3,
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                "Location : ስለ ዲሲ ማዘጋጃ ቤት ቤተመፃህፍት ጥያቄዎች ካሉዎት ወደ ቢሯችን በ (202) ",
-                                style: TextStyle(
-                                  color: warmOrangeHex,
-                                  fontSize: 15,
-                                ),
+                        Card(
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          child: Container(
+                            color: darkBlueHex,
+                            width: size.width * 0.3,
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              "Location : ስለ ዲሲ ማዘጋጃ ቤት ቤተመፃህፍት ጥያቄዎች ካሉዎት ወደ ቢሯችን በ (202) ",
+                              style: TextStyle(
+                                // color: warmOrangeHex,
+                                fontSize: 15,
                               ),
                             ),
                           ),
                         ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            // bottomRight: Radius.circular(60),
-                            topLeft: Radius.circular(30),
-                          ),
-                          child: Card(
-                            margin: EdgeInsets.only(bottom: 10),
-                            child: Container(
-                              color: darkBlueHex,
-                              width: size.width * 0.3,
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                "Description: ቢሮዎቻችንን ሲጎበኙ ወይም ሲደውሉልን የሰራተኞቻችን አባል እርስዎን ልንረዳዎ እንድንችል በአስተርጓሚ በአካል ሊያገናኝዎት ይችላል ፡፡",
-                                style: TextStyle(
-                                  color: warmOrangeHex,
-                                  fontSize: 15,
-                                ),
+                        Card(
+                          margin: EdgeInsets.only(bottom: 10, top: 10),
+                          child: Container(
+                            color: darkBlueHex,
+                            width: size.width * 0.3,
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              "Description: ቢሮዎቻችንን ሲጎበኙ ወይም ሲደውሉልን የሰራተኞቻችን አባል እርስዎን ልንረዳዎ እንድንችል በአስተርጓሚ በአካል ሊያገናኝዎት ይችላል ፡፡",
+                              style: TextStyle(
+                                // color: warmOrangeHex,
+                                fontSize: 15,
                               ),
                             ),
                           ),
                         ),
                         Column(
+                          // crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                // bottomRight: Radius.circular(60),
-                                topLeft: Radius.circular(15),
-                              ),
-                              child: Card(
-                                margin: EdgeInsets.only(bottom: 10),
-                                child: Container(
-                                  color: darkBlueHex,
-                                  width: size.width * 0.3,
-                                  padding: EdgeInsets.all(10),
-                                  child: Text(
-                                    "Time: 2:30",
-                                    style: TextStyle(
-                                      color: warmOrangeHex,
-                                      fontSize: 15,
-                                    ),
+                            Card(
+                              margin: EdgeInsets.only(bottom: 10, top: 10),
+                              child: Container(
+                                color: darkBlueHex,
+                                width: size.width * 0.3,
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  "Time: 2:30",
+                                  style: TextStyle(
+                                    // color: warmOrangeHex,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ),
                             ),
                             Consumer<ColorProvider>(
                               builder: (context, state, _) {
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                    // bottomRight: Radius.circular(60),
-                                    topLeft: Radius.circular(15),
-                                  ),
-                                  child: Card(
-                                    margin: EdgeInsets.only(bottom: 10),
-                                    child: Container(
-                                      color: state.color,
-                                      width: size.width * 0.3,
-                                      padding: EdgeInsets.all(10),
-                                      child: Text(
-                                        "Attending",
-                                        style: TextStyle(
-                                          color: warmOrangeHex,
-                                          fontSize: 15,
-                                        ),
+                                return Card(
+                                  margin: EdgeInsets.only(bottom: 10),
+                                  child: Container(
+                                    color: state.color,
+                                    width: size.width * 0.3,
+                                    padding: EdgeInsets.all(10),
+                                    child: Text(
+                                      "Attending",
+                                      style: TextStyle(
+                                        // color: warmOrangeHex,
+                                        fontSize: 15,
                                       ),
                                     ),
                                   ),

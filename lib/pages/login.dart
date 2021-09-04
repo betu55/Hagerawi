@@ -93,7 +93,7 @@ class Login extends StatelessWidget {
                             onPressed: () {
                               Navigator.pushNamed(context, "/feeds");
                             },
-                            child: Text("Sign-Up")),
+                            child: Text("LogIn")),
                       ),
                     ],
                   ),
