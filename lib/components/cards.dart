@@ -1,12 +1,43 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hagerawi_app/feed/feed_model.dart';
+import 'package:hagerawi_app/pages/feeds_post.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 Color darkBlueHex = Color(0xff023047);
 Color darkgreyHex = Color(0xff777777);
 Color warmOrangeHex = Color(0xffccc5b9);
 Color warmOrangeHexBtn = Color(0xffccc5b9);
 Color ligthOrangeHex = Color(0xffF4A261);
+
+Future<List<FeedModel>> getFeeds() async {
+  //declare from where we will be getting our list of objects
+  final result = await http.Client()
+      .get(Uri.parse("http://localhost:5000/feeds/"), headers: {
+    "Accept": "application/json",
+    "Access-Control_Allow_Origin": "*"
+  });
+
+  List<FeedModel> feeds = [];
+
+  if (result.statusCode != 200) print("error_fetching");
+  print(json.decode(result.body).length);
+  final theFeeds = json.decode(result.body);
+  for (var Feed in theFeeds) {
+    feeds.add(Feed);
+  }
+
+  print("\n");
+  print(feeds);
+  return feeds;
+}
+
+FeedModel parsedJsonData(final res) {
+  final feedsData = json.decode(res);
+  return feedsData;
+}
 
 class TheCard extends StatefulWidget {
   const TheCard({Key? key}) : super(key: key);
@@ -28,7 +59,8 @@ class _TheCardState extends State<TheCard> {
             splashColor: Colors.blueGrey.withAlpha(100),
             splashFactory: InkSplash.splashFactory,
             onTap: () {
-              print("");
+              getFeeds();
+              print("feed_pressed");
             },
             child: Container(
               padding: EdgeInsets.all(0),
