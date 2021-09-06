@@ -19,24 +19,18 @@ Future<List<FeedModel>> getFeeds() async {
     "Accept": "application/json",
     "Access-Control_Allow_Origin": "*"
   });
+  if (result.statusCode == 200) {
+    final feeds = json.decode(result.body).cast<Map<String, dynamic>>();
+    //print(feeds);
 
-  List<FeedModel> feeds = [];
+    List<FeedModel> feedList = feeds.map<FeedModel>((json) {
+      return FeedModel.fromJson(json);
+    }).toList();
 
-  if (result.statusCode != 200) print("error_fetching");
-  print(json.decode(result.body).length);
-  final theFeeds = json.decode(result.body);
-  for (var Feed in theFeeds) {
-    feeds.add(Feed);
+    return feedList;
+  } else {
+    throw Exception('failed to load from server');
   }
-
-  print("\n");
-  print(feeds);
-  return feeds;
-}
-
-FeedModel parsedJsonData(final res) {
-  final feedsData = json.decode(res);
-  return feedsData;
 }
 
 class TheCard extends StatefulWidget {
@@ -60,7 +54,6 @@ class _TheCardState extends State<TheCard> {
             splashFactory: InkSplash.splashFactory,
             onTap: () {
               getFeeds();
-              print("feed_pressed");
             },
             child: Container(
               padding: EdgeInsets.all(0),

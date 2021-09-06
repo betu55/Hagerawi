@@ -21,12 +21,9 @@ class FeedRepo {
     }
 
     print("\n");
-    print(feeds);
+    for (FeedModel fd in feeds) {
+      print("\n $fd");
+    }
     return feeds;
-  }
-
-  FeedModel parsedJsonData(final res) {
-    final feedsData = json.decode(res);
-    return feedsData;
   }
 }
