@@ -5,15 +5,23 @@ import 'package:hagerawi_app/components/fields.dart';
 import 'package:hagerawi_app/main.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/signup.dart';
-import 'package:hagerawi_app/pages/events.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hagerawi_app/auth/bloc/auth_bloc.dart';
+import 'package:hagerawi_app/auth/bloc/auth_event.dart';
+import 'package:hagerawi_app/auth/bloc/auth_state.dart';
+import 'package:hagerawi_app/pages/feeds.dart';
 
 const kPrimaryColor = Color(0xff777777);
 const kPrimaryLightColor = Colors.white;
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+  Login({Key? key}) : super(key: key);
 
   static const String routeName = "/login";
+
+  final emailTextController = TextEditingController();
+  final passwordTextController = TextEditingController();
+  // final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -86,14 +94,45 @@ class Login extends StatelessWidget {
                         height: 45,
                         margin:
                             EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.blueGrey,
-                            ),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "/feeds");
-                            },
-                            child: Text("LogIn")),
+                        child: BlocConsumer<AuthBloc, AuthState>(
+                            listener: (ctx, authState) {
+                          if (authState is LoggedIn) {
+                            Navigator.of(context).pushNamed(Feeds.routeName);
+                          }
+                        }, builder: (ctx, authState) {
+                          Widget buttonChild = Text("Login");
+
+                          if (authState is LoginInprogress) {
+                            buttonChild = SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            );
+                          }
+
+                          if (authState is AuthFailed) {
+                            buttonChild = Text(authState.errorMsg);
+                          }
+
+                          return ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blueGrey,
+                              ),
+                              onPressed: () {
+                                final authBloc =
+                                    BlocProvider.of<AuthBloc>(context);
+
+                                authBloc.add(
+                                  LoginEvent(
+                                    email: emailTextController.text,
+                                    password: passwordTextController.text,
+                                  ),
+                                );
+                              },
+                              child: buttonChild);
+                        }),
                       ),
                     ],
                   ),
