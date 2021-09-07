@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:hagerawi_app/feed/feed_model.dart';
 
 // event base class
-class FeedEvent {}
+abstract class FeedEvent {}
 
 class FetchFeedsEvent extends FeedEvent {
   FetchFeedsEvent();
@@ -12,7 +12,7 @@ class FetchFeedsEvent extends FeedEvent {
 class SearchFeedEvent extends FeedEvent {}
 
 // state base class
-class FeedState {}
+abstract class FeedState {}
 
 class FeedsLoading extends FeedState {}
 

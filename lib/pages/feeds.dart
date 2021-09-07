@@ -46,11 +46,12 @@ class _FeedsState extends State<Feeds> {
           create: (context) => FeedBloc(FeedRepo()),
           child: SafeArea(
             child: BlocBuilder<FeedBloc, FeedState>(builder: (ctx, state) {
-              // feedBloc.add(FetchFeedsEvent());
+              // the first time we get to feeds page
               final feedBloc = BlocProvider.of<FeedBloc>(ctx);
-              feedBloc.add(FetchFeedsEvent());
 
               if (state is FeedsLoading) {
+                feedBloc.add(FetchFeedsEvent());
+
                 return Center(
                   child: Container(
                     alignment: Alignment.center,
@@ -82,7 +83,10 @@ class _FeedsState extends State<Feeds> {
                         ),
                         SizedBox(height: 14),
                         ElevatedButton(
-                            onPressed: () {}, child: Text("go to feeds"))
+                            onPressed: () {
+                              // feedBloc.add(FetchFeedsEvent());
+                            },
+                            child: Text("go to feeds"))
                       ],
                     ),
                   ),
@@ -90,7 +94,9 @@ class _FeedsState extends State<Feeds> {
               }
               if (state is FeedsLoaded) {
                 // thi is the list of feeds
+
                 List<FeedModel> theFeeds = state.getFeeds;
+
                 return Stack(
                   children: [
                     //main background
