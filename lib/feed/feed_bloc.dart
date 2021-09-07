@@ -13,7 +13,7 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
     if (event is FetchFeedsEvent) {
       // this is the first state shown on the UI until the below try-catch code fetches data from our repository layer
       yield FeedsLoading();
-
+      // await Future.delayed(Duration(seconds: 15));
       try {
         List<FeedModel> feeds = await feedRepo.getFeeds();
 
