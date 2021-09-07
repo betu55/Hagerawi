@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 List<IconData> myIcons = [Icons.person, Icons.email, Icons.password];
-
+final formKey = GlobalKey<FormState>();
 Widget InputFieldAuth(String hint, int iconIndex) {
   return TextField(
+    // key: formKey,
     style: TextStyle(height: 1.5),
     cursorColor: Colors.grey.shade600,
     cursorHeight: 24,
