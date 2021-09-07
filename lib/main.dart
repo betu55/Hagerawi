@@ -31,6 +31,7 @@ void main() {
       SingleEvent.routeName: (BuildContext context) => SingleEvent(),
       Feeds.routeName: (BuildContext context) => Feeds(),
       LoginScreen.routeName: (BuildContext context) => LoginScreen(),
+      AdminEvents.routeName: (BuildContext context) => AdminEvents(),
       
     },
   ));
