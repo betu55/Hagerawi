@@ -1,16 +1,17 @@
-# hagerawi_app
+Hagerawi Application
+    A mobile application platform that aims at remedying the dying knowledge and interest about the rich history, works, and resources of our country by influencing a community through articles feed, event planning and notifying, preparing questions, and creating a discussion platform.
 
-A new Flutter project.
+Features Include:
+    -Article Feed CRUD where users will be getting a feed of articles that is composed of stories that are Ethiopian History-related
+    -Event Organizer CRUD where hosts can post various events to which users can reply as 'going' or 'not going'
+    -Question and Answer CRUD where users will be able to test themselves on various topics.
+    -Authentication and Authorization
+    -User comment section
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Group members:
+	1. Abel Mesele -ATR/9025/12
+	2. Abraham Tesfaye - ATR/2662/11
+	3. Bemnet Semegnew - ATR/6101/11
+	4. Luhana Daniel - ATR/9531/11
+	5. Nahom Tamru - ATR/2313/11

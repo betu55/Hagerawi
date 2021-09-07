@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hagerawi_app/feed/feed_bloc.dart';
+import 'package:hagerawi_app/feed/feed_event_and_state.dart';
 import 'package:hagerawi_app/main.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/components/fields.dart';
@@ -16,6 +19,7 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final feedBloc = BlocProvider.of<FeedBloc>(context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.blueGrey.shade900,
       statusBarIconBrightness: Brightness.light,
@@ -100,6 +104,7 @@ class Signup extends StatelessWidget {
                               primary: Colors.blueGrey,
                             ),
                             onPressed: () {
+                              // feedBloc.add(FetchFeedsEvent());
                               Navigator.pushNamed(context, "/feeds");
                             },
                             child: Text("Sign-Up")),

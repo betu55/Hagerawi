@@ -18,8 +18,10 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    // home: Login(),
-    initialRoute: Login.routeName,
+    //home: Login(),
+
+    initialRoute: Signup.routeName,
+
     routes: {
       Signup.routeName: (BuildContext context) => Signup(),
       Login.routeName: (BuildContext context) => Login(),

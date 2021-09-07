@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hagerawi_app/feed/feed_bloc.dart';
+import 'package:hagerawi_app/feed/feed_model.dart';
+import 'package:hagerawi_app/pages/feeds_post.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 Color darkBlueHex = Color(0xff023047);
 Color darkgreyHex = Color(0xff777777);
@@ -28,7 +33,7 @@ class _TheCardState extends State<TheCard> {
             splashColor: Colors.blueGrey.withAlpha(100),
             splashFactory: InkSplash.splashFactory,
             onTap: () {
-              print("");
+              print("pressed");
             },
             child: Container(
               padding: EdgeInsets.all(0),
