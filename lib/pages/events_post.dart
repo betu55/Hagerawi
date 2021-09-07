@@ -1,25 +1,60 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hagerawi_app/components/sidebar.dart';
+import 'package:hagerawi_app/components/cards.dart';
 
-void main() {
-  runApp(EventPost());
+
+class AdminEvents extends StatefulWidget {
+  const AdminEvents({Key? key}) : super(key: key);
+  static const String routeName = '/admin_events';
+  
+  @override
+  _AdminEventsState createState() => _AdminEventsState();
 }
 
-class EventPost extends StatelessWidget {
+class _AdminEventsState extends State<AdminEvents> {
+  final _myKey = GlobalKey<ScaffoldState>();
+
   @override
-  
   Widget build(BuildContext context) {
+     final ButtonStyle style =
+        ElevatedButton.styleFrom(
+    primary: Colors.grey.shade200.withAlpha(120), // background
+    onPrimary: Colors.white, 
+    alignment: Alignment.centerRight// foreground
+  );
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.blueGrey.shade900,
+      statusBarIconBrightness: Brightness.light,
+    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Events post',
       home: Scaffold(
         appBar:AppBar(
-          backgroundColor: Colors.greenAccent,
+          backgroundColor: Colors.blueGrey.shade900,
           title: const Text('Post Events'),
         ),
         body: Center(
             child: Container(
+              decoration: BoxDecoration(
+                      color: Colors.grey.shade500,
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.grey.shade600,
+                          Colors.blueGrey.shade800,
+                        ],
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                      ),
+                    ),
               child: ListView(
   padding: const EdgeInsets.all(40),
   children: <Widget>[
@@ -38,6 +73,7 @@ class EventPost extends StatelessWidget {
             alignment:Alignment.centerRight,
             child:Text('Event Name',
           style: TextStyle(
+            color: Colors.black,
             fontSize: 25
             )
           )
@@ -196,10 +232,7 @@ class EventPost extends StatelessWidget {
         children: <Widget>[
           ElevatedButton(
             
-            style: ButtonStyle(
-              
-              alignment: Alignment.centerRight,
-            ),
+            style: style,
             onPressed:haya,
             child: const Text('Submit'),
           ),
