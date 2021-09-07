@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class FeedRepo {
+  // get fututr for getting list of feeds
   Future<List<FeedModel>> getFeeds() async {
     //declare from where we will be getting our list of objects
     final result = await http.Client()
@@ -10,20 +11,20 @@ class FeedRepo {
       "Accept": "application/json",
       "Access-Control_Allow_Origin": "*"
     });
+    if (result.statusCode == 200) {
+      final feeds = json.decode(result.body).cast<Map<String, dynamic>>();
+      //print(feeds);
 
-    List<FeedModel> feeds = [];
+      List<FeedModel> feedList = feeds.map<FeedModel>((json) {
+        return FeedModel.fromJson(json);
+      }).toList();
 
-    if (result.statusCode != 200) print("error_fetching");
-    print(json.decode(result.body).length);
-    final theFeeds = json.decode(result.body);
-    for (var Feed in theFeeds) {
-      feeds.add(Feed);
+      // print(feedList[0].author);
+      return feedList;
+    } else {
+      throw Exception('failed to load from server');
     }
-
-    print("\n");
-    for (FeedModel fd in feeds) {
-      print("\n $fd");
-    }
-    return feeds;
   }
+
+  // Future<FeedModel> getSingleFeed() {}
 }
