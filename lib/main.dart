@@ -19,7 +19,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: Feeds.routeName,
+    initialRoute: Signup.routeName,
 
     routes: {
       Signup.routeName: (BuildContext context) => Signup(),
