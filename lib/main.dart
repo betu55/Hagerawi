@@ -9,6 +9,8 @@ import 'package:hagerawi_app/pages/login.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/single_event.dart';
 
+import 'event/screens/program.dart';
+
 void doSth() {
   print("working progress real <.>");
 }
@@ -27,6 +29,7 @@ void main() {
       Login.routeName: (BuildContext context) => Login(),
       Quiz.routeName: (BuildContext context) => Quiz(),
       EventsPage.routeName: (BuildContext context) => EventsPage(),
+      ProgramsPage.routeName: (BuildContext context) => ProgramsPage(),
       SingleEvent.routeName: (BuildContext context) => SingleEvent(),
       Feeds.routeName: (BuildContext context) => Feeds(),
       LoginScreen.routeName: (BuildContext context) => LoginScreen(),
