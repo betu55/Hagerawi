@@ -1,15 +1,6 @@
 import 'dart:async';
 
-import 'package:hagerawi_app/feed/feed_model.dart';
-
-// event base class
-abstract class FeedEvent {}
-
-class FetchFeedsEvent extends FeedEvent {
-  FetchFeedsEvent();
-}
-
-class SearchFeedEvent extends FeedEvent {}
+import 'package:hagerawi_app/feed/models/feed_model.dart';
 
 // state base class
 abstract class FeedState {}
@@ -24,6 +15,12 @@ class FeedsLoaded extends FeedState {
   List<FeedModel> get getFeeds => _feeds;
 }
 
-class FeedSearched extends FeedState {}
+class FeedSearched extends FeedState {
+  List<FeedModel> _searchedFeeds;
+
+  FeedSearched(this._searchedFeeds);
+
+  List<FeedModel> get getSearchedFeeds => _searchedFeeds;
+}
 
 class FeedsNotLoaded extends FeedState {}

@@ -10,9 +10,9 @@ Widget InputFieldAuth(String hint, int iconIndex) {
     cursorHeight: 24,
     textAlignVertical: TextAlignVertical.center,
     decoration: InputDecoration(
-      icon: Icon(
+      prefixIcon: Icon(
         myIcons[iconIndex],
-        color: Colors.grey.shade200.withAlpha(120),
+        color: Colors.blueGrey,
       ),
       hintStyle: TextStyle(
         color: Colors.blueGrey,
@@ -36,8 +36,9 @@ Widget InputFieldAuth(String hint, int iconIndex) {
   );
 }
 
-Widget InputField(String hint) {
+Widget InputField(String hint, TextEditingController con) {
   return TextField(
+    controller: con,
     style: TextStyle(height: 1.5),
     cursorColor: Colors.grey.shade600,
     cursorHeight: 24,

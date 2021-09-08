@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hagerawi_app/feed/feed_event_and_state.dart';
-import 'package:hagerawi_app/feed/feed_model.dart';
-import 'package:hagerawi_app/feed/feed_repo.dart';
+import 'package:hagerawi_app/feed/bloc/blocs.dart';
+import 'package:hagerawi_app/feed/models/feed_model.dart';
+import 'package:hagerawi_app/feed/repository/feed_repo.dart';
 
 class FeedBloc extends Bloc<FeedEvent, FeedState> {
   FeedRepo feedRepo;
@@ -17,7 +17,6 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
       try {
         List<FeedModel> feeds = await feedRepo.getFeeds();
 
-        // print(feeds[0].detailed);
         yield FeedsLoaded(feeds);
       } catch (_) {
         yield FeedsNotLoaded();
@@ -25,16 +24,19 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
     }
 
     // when the user searchs for a specific field
-    if (event is SearchFeedEvent) {
-      yield FeedSearched();
+    if (event is SearchFeedsEvent) {
+      yield FeedsLoading();
 
-      // try {
-      //   Future<List<FeedModel>> feeds = feedRepo.getFeeds();
+      try {
+        // print(event.props[0].toString());
+        List<FeedModel> searchedFeeds =
+            await feedRepo.getSearchedFeeds(event.props[0].toString());
 
-      //   yield FeedsLoaded(feeds);
-      // } catch (_) {
-      //   yield FeedsNotLoaded();
-      // }
+        print(searchedFeeds);
+        yield FeedSearched(searchedFeeds);
+      } catch (_) {
+        yield FeedsNotLoaded();
+      }
     }
   }
 }
