@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/components/cards.dart';
-import 'package:hagerawi_app/feed/feed_model.dart';
+import 'package:hagerawi_app/feed/models/feed_model.dart';
 
 void main() {
   runApp(MyApp());

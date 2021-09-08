@@ -47,7 +47,11 @@ class _SingleEventState extends State<SingleEvent> {
               // width: 300,
               child: Column(
                 children: [
-                  TheCard(),
+                  TheCard(
+                    title: "",
+                    description: "",
+                    author: "",
+                  ),
                   Container(
                     // width: size.width,
                     height: 150,

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hagerawi_app/feed/feed_bloc.dart';
-import 'package:hagerawi_app/feed/feed_model.dart';
+import 'package:hagerawi_app/feed/bloc/feed_bloc.dart';
+import 'package:hagerawi_app/feed/models/feed_model.dart';
 import 'package:hagerawi_app/pages/feeds_post.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -14,7 +14,16 @@ Color warmOrangeHexBtn = Color(0xffccc5b9);
 Color ligthOrangeHex = Color(0xffF4A261);
 
 class TheCard extends StatefulWidget {
-  const TheCard({Key? key}) : super(key: key);
+  final String title;
+  final String author;
+  final String description;
+
+  const TheCard(
+      {Key? key,
+      required this.title,
+      required this.author,
+      required this.description})
+      : super(key: key);
 
   @override
   _TheCardState createState() => _TheCardState();
@@ -48,7 +57,7 @@ class _TheCardState extends State<TheCard> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
-                      "Title",
+                      widget.title,
                       style:
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     ),
@@ -56,7 +65,7 @@ class _TheCardState extends State<TheCard> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
-                      "# This file tracks properties of this Flutter project.This file should be version controlled This file tracks properties of this Flutter project.This file should be version controlled This file tracks properties of this Flutter project.This file should be version controlled and should not be manually edited revision: f4abaa0735eba4dfd8f33f73363911d63931fe03channel: stableproject_type: app",
+                      widget.description,
                       style: TextStyle(fontSize: 13),
                     ),
                   ),
@@ -66,7 +75,7 @@ class _TheCardState extends State<TheCard> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            "@author_name",
+                            widget.author,
                             textAlign: TextAlign.end,
                             style: TextStyle(
                               color: Colors.grey.shade700,

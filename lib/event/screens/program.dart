@@ -199,7 +199,11 @@ class _EventsPageState extends State<EventsPage> {
                     child: ListView.builder(
                         itemCount: 50,
                         itemBuilder: (BuildContext context, i) {
-                          return TheCard();
+                          return TheCard(
+                            title: "",
+                            author: "",
+                            description: "",
+                          );
                         }),
                   ),
                 ],
