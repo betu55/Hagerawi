@@ -109,9 +109,9 @@ class _ProgramsPageState extends State<ProgramsPage> {
                           itemCount: theEvents.length,
                           itemBuilder: (BuildContext context, i) {
                             return TheEventCard(
-                              title: theEvents.title,
-                              author: theEvents.author,
-                              description: theEvents.description,
+                              title: theEvents[i].title,
+                              author: theEvents[i].postedby,
+                              description: theEvents[i].content,
                             );
                           }),
                     ),
