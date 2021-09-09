@@ -11,7 +11,7 @@ class ProgramRepository {
     });
 
     if (result.statusCode == 200) {
-      final programs = json.decode(result.body).cast<Map<String, dynamic>>();
+      final programs = json.decode(result.body);
       List<ProgramModel> programList = programs.map<ProgramModel>((json) {
         return ProgramModel.fromJson(json);
       }).toList();
