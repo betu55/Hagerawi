@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:hagerawi_app/components/cards.dart';
 import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/providers/color_provider.dart';
 import 'package:provider/provider.dart';
 
 class SingleEvent extends StatefulWidget {
-  const SingleEvent({Key? key}) : super(key: key);
+  final String title;
+  final String author;
+  final String detail;
+  const SingleEvent(
+      {Key? key,
+      required this.title,
+      required this.author,
+      required this.detail})
+      : super(key: key);
+
   static const String routeName = "/single_event";
+
   @override
   _SingleEventState createState() => _SingleEventState();
 }
@@ -31,26 +42,29 @@ class _SingleEventState extends State<SingleEvent> {
           create: (context) => colorProvider,
           child: Scaffold(
             backgroundColor: darkgreyHex,
-            drawer: Navbar(),
+            // drawer: Navbar(),
             appBar: AppBar(
               title: Text(
-                "Events",
-                style: TextStyle(color: warmOrangeHex),
+                "Event",
+                style: TextStyle(color: Colors.blueGrey.shade700),
               ),
               centerTitle: true,
               backgroundColor: darkBlueHex,
               backwardsCompatibility: true,
-              iconTheme: IconThemeData(color: warmOrangeHex),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.blueGrey.shade700),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
             ),
             body: Container(
               // height: 300,
               // width: 300,
               child: Column(
                 children: [
-                  TheCard(
-                    title: "",
-                    description: "",
-                    author: "",
+                  TheSingleCard(
+                    title: widget.title,
+                    detailed: widget.detail,
+                    author: widget.author,
                   ),
                   Container(
                     // width: size.width,

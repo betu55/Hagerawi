@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:hagerawi_app/admin_feeds/admin_feeds_model.dart';
 
@@ -8,14 +9,18 @@ abstract class AdminFeedState {}
 class FeedsUploading extends AdminFeedState {}
 
 class FeedsUploaded extends AdminFeedState {
-  List<AdminFeedsModel> _feeds;
+  final AdminFeedsModel newPost;
 
-  FeedsUploaded(this._feeds);
+  FeedsUploaded(this.newPost);
 
-  List<AdminFeedsModel> get getFeeds => _feeds;
+  List<Object> get props => [newPost];
+
+  String toString() => 'AddSongSuccess{ newPost: $newPost}';
 }
 
 class FeedSearched extends AdminFeedState {}
+
+class FeedsUpload extends AdminFeedState {}
 
 class AdminFeedsNotUploaded extends AdminFeedState {}
 

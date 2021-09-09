@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/components/fields.dart';
-import 'package:hagerawi_app/components/cards.dart';
 import 'package:hagerawi_app/event/bloc/blocs.dart';
+import 'package:hagerawi_app/event/components/card.dart';
 import 'package:hagerawi_app/event/models/program_model.dart';
 import 'package:hagerawi_app/event/repository/program_repository.dart';
 
@@ -95,7 +95,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
               if (state is ProgramLoaded) {
                 // thi is the list of feeds
 
-                List<ProgramModel> theFeeds = state.getEvents;
+                List<ProgramModel> theEvents = state.getEvents;
 
                 return Stack(
                   children: [
@@ -106,12 +106,12 @@ class _ProgramsPageState extends State<ProgramsPage> {
 
                     Expanded(
                       child: ListView.builder(
-                          itemCount: theFeeds.length,
+                          itemCount: theEvents.length,
                           itemBuilder: (BuildContext context, i) {
-                            return TheCard(
-                              title: "",
-                              author: "",
-                              description: "",
+                            return TheEventCard(
+                              title: theEvents.title,
+                              author: theEvents.author,
+                              description: theEvents.description,
                             );
                           }),
                     ),
