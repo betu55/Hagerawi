@@ -5,6 +5,9 @@ abstract class ProgramState {}
 class ProgramLoading extends ProgramState {}
 
 class ProgramLoaded extends ProgramState {
-  final ProgramModel programs;
-  ProgramLoaded(this.programs);
+  List<ProgramModel> _programs;
+  ProgramLoaded(this._programs);
+  List<ProgramModel> get getEvents => _programs;
 }
+
+class ProgramsNotLoaded extends ProgramState {}

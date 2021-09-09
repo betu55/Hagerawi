@@ -3,17 +3,27 @@ import 'package:flutter/rendering.dart';
 
 class ProgramModel {
   final title;
-  final desc;
+  final content;
   final location;
   final time;
   final attendees;
   final postedby;
 
-  ProgramModel(this.title, this.time, this.desc, this.location, this.attendees,
-      this.postedby);
+  ProgramModel(
+      {this.title,
+      this.time,
+      this.content,
+      this.location,
+      this.attendees,
+      this.postedby});
 
   factory ProgramModel.fromJson(Map<String, dynamic> json) {
-    return ProgramModel(json["title"], json["content"], json["attendees"],
-        json["time"], json["location"], json["postedby"]);
+    return ProgramModel(
+        title: json["title"],
+        content: json["content"],
+        attendees: json["attendees"],
+        time: json["time"],
+        location: json["location"],
+        postedby: json["postedby"]);
   }
 }

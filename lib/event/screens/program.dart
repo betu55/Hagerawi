@@ -1,22 +1,27 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hagerawi_app/components/sidebar.dart';
-import 'package:hagerawi_app/components/cards.dart';
+import 'package:hagerawi_app/components/fields.dart';
 import 'package:hagerawi_app/event/bloc/blocs.dart';
+import 'package:hagerawi_app/event/components/card.dart';
 import 'package:hagerawi_app/event/models/program_model.dart';
+import 'package:hagerawi_app/event/repository/program_repository.dart';
 
 // ignore: camel_case_types
-class EventsPage extends StatefulWidget {
-  const EventsPage({Key? key}) : super(key: key);
-  static const String routeName = '/events';
+class ProgramsPage extends StatefulWidget {
+  const ProgramsPage({Key? key}) : super(key: key);
+  static const String routeName = '/programs';
 
   @override
-  _EventsPageState createState() => _EventsPageState();
+  _ProgramsPageState createState() => _ProgramsPageState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _ProgramsPageState extends State<ProgramsPage> {
   final _myKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +41,21 @@ class _EventsPageState extends State<EventsPage> {
         resizeToAvoidBottomInset: false,
         key: _myKey,
         drawer: Navbar(),
-        body: SafeArea(
-          child: Stack(
-            children: [
-              //main background
-              Container(
-                color: Colors.grey.shade800,
-              ),
-              //this is the top part where your username and the search bar are
-              Column(
-                children: [
-                  Container(
+        body: BlocProvider(
+          create: (context) => ProgramBloc(ProgramRepository()),
+          child: SafeArea(
+            child:
+                BlocBuilder<ProgramBloc, ProgramState>(builder: (ctx, state) {
+              // the first time we get to feeds page
+              final programBloc = BlocProvider.of<ProgramBloc>(ctx);
+
+              if (state is ProgramLoading) {
+                programBloc.add(LoadProgramsEvent());
+
+                return Center(
+                  child: Container(
                     alignment: Alignment.center,
-                    height: (MediaQuery.of(context).size.height) / 4,
+                    height: double.infinity,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade500,
@@ -60,156 +67,59 @@ class _EventsPageState extends State<EventsPage> {
                           Colors.blueGrey.shade800,
                         ],
                       ),
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                      ),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Expanded(
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                        borderRadius: BorderRadius.circular(20),
-                                        onTap: () {
-                                          _myKey.currentState!.openDrawer();
-                                        },
-                                        splashColor:
-                                            Colors.blueGrey.withAlpha(100),
-                                        child: Container(
-                                          padding: EdgeInsets.all(8),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                          ),
-                                          child: Icon(
-                                            Icons.menu,
-                                            color: Colors.grey.shade200
-                                                .withAlpha(120),
-                                            size: 26,
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Container(
-                                    padding: EdgeInsets.all(8),
-                                    child: Text(
-                                      "Welcome Betu",
-                                      style: TextStyle(
-                                        color:
-                                            Colors.grey.shade200.withAlpha(120),
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        CircularProgressIndicator(
+                          strokeWidth: 3,
+                          color: Colors.blueGrey.shade200,
                         ),
+                        SizedBox(height: 14),
                         Text(
-                          "Why dont you try searching for an Event?",
+                          "Loading events...",
                           style: TextStyle(
-                            color: Colors.grey.shade200.withAlpha(120),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                              fontSize: 15, color: Colors.blueGrey.shade200),
                         ),
-                        SizedBox(height: 10),
-                        Expanded(
-                            child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 280,
-                                child: TextField(
-                                  style: TextStyle(height: 1.5),
-                                  cursorColor: Colors.grey.shade600,
-                                  cursorHeight: 24,
-                                  textAlignVertical: TextAlignVertical.center,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      color: Colors.blueGrey,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(
-                                      vertical: 1,
-                                      horizontal: 12,
-                                    ),
-                                    focusColor: Colors.red,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Colors.blueGrey),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    hintText: 'Enter a search term',
-                                    fillColor:
-                                        Colors.grey.shade200.withAlpha(120),
-                                    filled: true,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 5),
-                              Material(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.grey.shade200.withAlpha(120),
-                                child: InkWell(
-                                    borderRadius: BorderRadius.circular(10),
-                                    onTap: () {
-                                      print("searching...");
-                                    },
-                                    splashColor: Colors.blueGrey.withAlpha(100),
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Icon(
-                                        Icons.search,
-                                        color: Colors.blueGrey,
-                                        size: 26,
-                                      ),
-                                    )),
-                              ),
-                            ],
-                          ),
-                        )),
-                        SizedBox(height: 20)
+                        // SizedBox(height: 14),
+                        // ElevatedButton(
+                        //     onPressed: () {
+                        //       // feedBloc.add(FetchFeedsEvent());
+                        //     },
+                        //     child: Text("go to feeds"))
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: 50,
-                        itemBuilder: (BuildContext context, i) {
-                          return TheCard(
-                            title: "",
-                            author: "",
-                            description: "",
-                            detailed: "",
-                          );
-                        }),
-                  ),
-                ],
-              ),
-            ],
+                );
+              }
+              if (state is ProgramLoaded) {
+                // thi is the list of feeds
+
+                List<ProgramModel> theEvents = state.getEvents;
+
+                return Stack(
+                  children: [
+                    //main background
+                    Container(
+                      color: Colors.grey.shade800,
+                    ),
+
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: theEvents.length,
+                          itemBuilder: (BuildContext context, i) {
+                            return TheEventCard(
+                              title: theEvents[i].title,
+                              author: theEvents[i].postedby,
+                              description: theEvents[i].content,
+                            );
+                          }),
+                    ),
+                  ],
+                );
+              }
+              throw ProgramsNotLoaded();
+            }),
           ),
         ),
       ),

@@ -105,7 +105,7 @@ class Signup extends StatelessWidget {
                             ),
                             onPressed: () {
                               // feedBloc.add(FetchFeedsEvent());
-                              Navigator.pushNamed(context, "/feeds");
+                              Navigator.pushNamed(context, "/programs");
                             },
                             child: Text("Sign-Up")),
                       ),
