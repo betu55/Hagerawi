@@ -7,6 +7,8 @@ abstract class FeedState {}
 
 class FeedsLoading extends FeedState {}
 
+class SearchFeedsLoading extends FeedState {}
+
 class FeedsLoaded extends FeedState {
   List<FeedModel> _feeds;
 

@@ -203,6 +203,7 @@ class _EventsPageState extends State<EventsPage> {
                             title: "",
                             author: "",
                             description: "",
+                            detailed: "",
                           );
                         }),
                   ),

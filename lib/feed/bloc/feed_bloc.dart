@@ -25,7 +25,7 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
 
     // when the user searchs for a specific field
     if (event is SearchFeedsEvent) {
-      yield FeedsLoading();
+      yield SearchFeedsLoading();
 
       try {
         // print(event.props[0].toString());

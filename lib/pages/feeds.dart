@@ -64,10 +64,44 @@ class _FeedsState extends State<Feeds> {
             child: BlocBuilder<FeedBloc, FeedState>(builder: (ctx, state) {
               // the first time we get to feeds page
               final feedBloc = BlocProvider.of<FeedBloc>(ctx);
-
+              if (state is SearchFeedsLoading) {
+                return Center(
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade500,
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.grey.shade600,
+                          Colors.blueGrey.shade800,
+                        ],
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          strokeWidth: 3,
+                          color: Colors.blueGrey.shade200,
+                        ),
+                        SizedBox(height: 14),
+                        Text(
+                          "fetching feeds...",
+                          style: TextStyle(
+                              fontSize: 15, color: Colors.blueGrey.shade200),
+                        ),
+                        SizedBox(height: 14),
+                      ],
+                    ),
+                  ),
+                );
+              }
               if (state is FeedsLoading) {
                 feedBloc.add(FetchFeedsEvent());
-
                 return Center(
                   child: Container(
                     alignment: Alignment.center,
@@ -109,7 +143,6 @@ class _FeedsState extends State<Feeds> {
 
                 // this clears any keyword data from before searches
                 // dispose();
-
                 return Stack(
                   children: [
                     //main background
@@ -259,6 +292,7 @@ class _FeedsState extends State<Feeds> {
                                 title: theFeeds[i].title,
                                 description: theFeeds[i].desc,
                                 author: theFeeds[i].author,
+                                detailed: theFeeds[i].detailed,
                               );
                             },
                           ),
@@ -425,6 +459,7 @@ class _FeedsState extends State<Feeds> {
                                 title: theSearchedFeeds[i].title,
                                 description: theSearchedFeeds[i].desc,
                                 author: theSearchedFeeds[i].author,
+                                detailed: theSearchedFeeds[i].detailed,
                               );
                             },
                           ),
