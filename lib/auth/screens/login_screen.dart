@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hagerawi_app/auth/bloc/auth_bloc.dart';
 import 'package:hagerawi_app/auth/bloc/auth_event.dart';
 import 'package:hagerawi_app/auth/bloc/auth_state.dart';
-import 'package:hagerawi_app/pages/feeds.dart';
+import 'package:hagerawi_app/feed/screens/feeds.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routeName = '/sign-in';
