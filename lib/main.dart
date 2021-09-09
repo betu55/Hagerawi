@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hagerawi_app/auth/screens/login_screen.dart';
-import 'package:hagerawi_app/pages/feeds.dart';
+import 'package:hagerawi_app/feed/screens/feeds.dart';
 import 'package:hagerawi_app/pages/quiz.dart';
 import 'package:hagerawi_app/pages/signup.dart';
 import 'package:hagerawi_app/pages/login.dart';

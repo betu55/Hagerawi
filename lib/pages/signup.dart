@@ -8,6 +8,7 @@ import 'package:hagerawi_app/main.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/components/fields.dart';
 import 'package:hagerawi_app/pages/login.dart';
+import 'package:hagerawi_app/pages/single_event.dart';
 
 const kPrimaryColor = Color(0xff777777);
 const kPrimaryLightColor = Colors.white;
@@ -100,14 +101,21 @@ class Signup extends StatelessWidget {
                         margin:
                             EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                         child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.blueGrey,
-                            ),
-                            onPressed: () {
-                              // feedBloc.add(FetchFeedsEvent());
-                              Navigator.pushNamed(context, "/feeds");
-                            },
-                            child: Text("Sign-Up")),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey,
+                          ),
+                          onPressed: () {
+                            // feedBloc.add(FetchFeedsEvent());
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return SingleEvent(
+                                  title: "Title",
+                                  author: "@author",
+                                  detail: "detailed");
+                            }));
+                          },
+                          child: Text("Sign-Up"),
+                        ),
                       ),
                     ],
                   ),

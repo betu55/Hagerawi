@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hagerawi_app/components/cards.dart';
-import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/providers/color_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -43,145 +42,209 @@ class _SingleEventState extends State<SingleEvent> {
           child: Scaffold(
             backgroundColor: darkgreyHex,
             // drawer: Navbar(),
-            appBar: AppBar(
-              title: Text(
-                "Event",
-                style: TextStyle(color: Colors.blueGrey.shade700),
-              ),
-              centerTitle: true,
-              backgroundColor: darkBlueHex,
-              backwardsCompatibility: true,
-              leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.blueGrey.shade700),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ),
-            body: Container(
-              // height: 300,
-              // width: 300,
-              child: Column(
+
+            body: SafeArea(
+              child: Stack(
                 children: [
-                  TheSingleCard(
-                    title: widget.title,
-                    detailed: widget.detail,
-                    author: widget.author,
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade500,
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.grey.shade600,
+                            Colors.blueGrey.shade800,
+                          ],
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                        ),
+                      ),
+                    ),
                   ),
-                  Container(
-                    // width: size.width,
-                    height: 150,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Card(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                          child: Container(
-                            color: darkBlueHex,
-                            width: size.width * 0.3,
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              "Location : ስለ ዲሲ ማዘጋጃ ቤት ቤተመፃህፍት ጥያቄዎች ካሉዎት ወደ ቢሯችን በ (202) ",
-                              style: TextStyle(
-                                // color: warmOrangeHex,
-                                fontSize: 15,
-                              ),
-                            ),
+                  Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        height: (MediaQuery.of(context).size.height) / 10,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade500,
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.grey.shade600,
+                              Colors.blueGrey.shade800,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
                           ),
                         ),
-                        Card(
-                          margin: EdgeInsets.only(bottom: 10, top: 10),
-                          child: Container(
-                            color: darkBlueHex,
-                            width: size.width * 0.3,
-                            padding: EdgeInsets.all(10),
-                            child: Text(
-                              "Description: ቢሮዎቻችንን ሲጎበኙ ወይም ሲደውሉልን የሰራተኞቻችን አባል እርስዎን ልንረዳዎ እንድንችል በአስተርጓሚ በአካል ሊያገናኝዎት ይችላል ፡፡",
-                              style: TextStyle(
-                                // color: warmOrangeHex,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Column(
-                          // crossAxisAlignment: CrossAxisAlignment.center,
+                        //this is the top part where your username and the search bar are
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Card(
-                              margin: EdgeInsets.only(bottom: 10, top: 10),
-                              child: Container(
-                                color: darkBlueHex,
-                                width: size.width * 0.3,
-                                padding: EdgeInsets.all(10),
-                                child: Text(
-                                  "Time: 2:30",
-                                  style: TextStyle(
-                                    // color: warmOrangeHex,
-                                    fontSize: 15,
-                                  ),
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Expanded(
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            splashColor:
+                                                Colors.blueGrey.withAlpha(100),
+                                            child: Container(
+                                              padding: EdgeInsets.all(8),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                              ),
+                                              child: Icon(
+                                                Icons.arrow_back,
+                                                color: Colors.grey.shade200
+                                                    .withAlpha(120),
+                                                size: 26,
+                                              ),
+                                            )),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        padding: EdgeInsets.all(8),
+                                        child: Text(
+                                          widget.title,
+                                          // "text",
+                                          style: TextStyle(
+                                            color: Colors.grey.shade200
+                                                .withAlpha(120),
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          physics: BouncingScrollPhysics(),
+                          children: [
+                            TheSingleCard(
+                              title: "",
+                              author: widget.author,
+                              detailed: widget.detail,
+                            ),
+                            // Expanded(
+                            //   child: ListView.builder(
+                            //     physics: BouncingScrollPhysics(),
+                            //     itemCount: 1,
+                            //     itemBuilder: (BuildContext context, i) {
+                            //       return CommentInputField("hint");
+                            //     },
+                            //   ),
+                            // ),
+                            SizedBox(height: 10),
                             Consumer<ColorProvider>(
-                              builder: (context, state, _) {
-                                return Card(
-                                  margin: EdgeInsets.only(bottom: 10),
-                                  child: Container(
-                                    color: state.color,
-                                    width: size.width * 0.3,
-                                    padding: EdgeInsets.all(10),
+                                builder: (context, state, _) {
+                              return Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 10),
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: state.color,
+                                        padding: EdgeInsets.all(20)),
+                                    onPressed: () {
+                                      // feedBloc.add(FetchFeedsEvent());
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return SingleEvent(
+                                            title: "Title",
+                                            author: "@author",
+                                            detail: "detailed");
+                                      }));
+                                    },
                                     child: Text(
                                       "Attending",
                                       style: TextStyle(
-                                        // color: warmOrangeHex,
-                                        fontSize: 15,
+                                          color: Colors.blueGrey.shade800),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+
+                            SizedBox(height: 10),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: double.infinity,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.blueGrey,
+                                            padding: EdgeInsets.all(20)),
+                                        onPressed: () {
+                                          // feedBloc.add(FetchFeedsEvent());
+                                          colorProvider
+                                              .changeColor(Colors.green);
+                                        },
+                                        child: Text("Yes, I'm going"),
                                       ),
                                     ),
                                   ),
-                                );
-                              },
+                                  Expanded(
+                                    child: Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: double.infinity,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.blueGrey,
+                                            padding: EdgeInsets.all(20)),
+                                        onPressed: () {
+                                          colorProvider.changeColor2(
+                                            Colors.grey.shade500,
+                                          );
+                                        },
+                                        child: Text("No, I'm not going"),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: goingColor,
-                          // primary: yellowtext,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 40),
-                        ),
-                        onPressed: () {
-                          colorProvider.changeColor(Colors.green);
-                        },
-                        child: Text("Yes, I am going",
-                            style: TextStyle(
-                              // backgroundColor: warmOrangeHex,
-                              fontWeight: FontWeight.w300,
-                            )),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: goingColor,
-                          // primary: yellowtext,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 40),
-                        ),
-                        onPressed: () {
-                          colorProvider.changeColor(Colors.red);
-                        },
-                        child: Text("No, I am not going",
-                            style: TextStyle(
-                              // backgroundColor: warmOrangeHex,
-                              fontWeight: FontWeight.w300,
-                            )),
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
             ),
