@@ -5,7 +5,7 @@ import 'package:hagerawi_app/feed/bloc/feed_bloc.dart';
 import 'package:hagerawi_app/feed/models/feed_model.dart';
 import 'package:hagerawi_app/pages/feeds_post.dart';
 import 'package:hagerawi_app/pages/single_event.dart';
-import 'package:hagerawi_app/pages/single_feed.dart';
+import 'package:hagerawi_app/feed/screens/single_feed.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -78,7 +78,7 @@ class _TheCardState extends State<TheCard> {
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
                       widget.description,
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 15),
                     ),
                   ),
                   Padding(
@@ -153,7 +153,7 @@ class _TheSingleCardState extends State<TheSingleCard> {
                     padding: const EdgeInsets.all(4.0),
                     child: Text(
                       widget.detailed,
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 15),
                     ),
                   ),
                   Padding(
