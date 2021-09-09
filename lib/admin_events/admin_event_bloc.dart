@@ -1,40 +1,47 @@
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:hagerawi_app/feed/feed_event_and_state.dart';
-// import 'package:hagerawi_app/feed/feed_model.dart';
-// import 'package:hagerawi_app/feed/feed_repo.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hagerawi_app/admin_feeds/admin_feeds_event_and_state.dart';
+import 'package:hagerawi_app/admin_feeds/admin_feeds_model.dart';
+import 'package:hagerawi_app/admin_feeds/admin_feeds_repo.dart';
+import 'package:hagerawi_app/admin_feeds/admin_feeds_state.dart';
 
-// class AdminEventBloc extends Bloc<AdminPostEvent, AdminPostState> {
-//   AdminPostRepo feedRepo;
-//   AdminPostBloc(this.feedRepo) : super(FetchUploading());
+class AdminFeedBloc extends Bloc<AdminFeedEvent, AdminFeedState> {
+  AdminFeedRepo feedRepo;
+  AdminFeedBloc(this.feedRepo) : super(FeedsUploading());
 
-//   @override
-//   Stream<AdminPostState> mapEventToState(AdminPostEvent event) async* {
-//     // on the case that our user opens the page for the first time
-//     if (event is FetchAdminPostEvent) {
-//       // this is the first state shown on the UI until the below try-catch code fetches data from our repository layer
-//       yield FetchUploading();
-//       // await Future.delayed(Duration(seconds: 15));
-//       try {
-//         List<AdminPostModel> feeds = await feedRepo.getFeeds();
+  @override
+  Stream<AdminFeedState> mapEventToState(AdminFeedEvent event) async* {
+    // on the case that our user opens the page for the first time
+    if (event is PostAdminFeedsEvent) {
+      final title= event.title;
+      final author= event.author;
+       final desc= event.desc;
+        final detail= event.detail;
+      // this is the first state shown on the UI until the below try-catch code fetches data from our repository layer
+      yield FeedsUploading();
+      await Future.delayed(Duration(seconds: 2));
 
-//         // print(feeds[0].detailed);
-//         yield FeedsUploaded(feeds);
-//       } catch (_) {
-//         yield FeedsNotUploaded();
-//       }
-//     }
+      // await Future.delayed(Duration(seconds: 15));
+      try {
+        List<AdminFeedsModel> feeds = await feedRepo.getFeeds();
 
-//     // when the user searchs for a specific field
-//     if (event is SearchFeedEvent) {
-//       yield FeedSearched();
+        // print(feeds[0].detailed);
+        yield FeedsUploaded(feeds);
+      } catch (_) {
+        yield AdminFeedsNotUploaded();
+      }
+    }
 
-//       // try {
-//       //   Future<List<FeedModel>> feeds = feedRepo.getFeeds();
+    // when the user searchs for a specific field
+    if (event is SearchFeedEvent) {
+      yield FeedSearched();
 
-//       //   yield FeedsLoaded(feeds);
-//       // } catch (_) {
-//       //   yield FeedsNotLoaded();
-//       // }
-//     }
-//   }
-// }
+      // try {
+      //   Future<List<FeedModel>> feeds = feedRepo.getFeeds();
+
+      //   yield FeedsLoaded(feeds);
+      // } catch (_) {
+      //   yield FeedsNotLoaded();
+      // }
+    }
+  }
+}
