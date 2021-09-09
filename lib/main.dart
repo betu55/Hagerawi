@@ -8,6 +8,7 @@ import 'package:hagerawi_app/pages/signup.dart';
 import 'package:hagerawi_app/pages/login.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/single_event.dart';
+import 'package:hagerawi_app/pages/events_post.dart';
 
 import 'event/screens/program.dart';
 
@@ -33,6 +34,8 @@ void main() {
       SingleEvent.routeName: (BuildContext context) => SingleEvent(),
       Feeds.routeName: (BuildContext context) => Feeds(),
       LoginScreen.routeName: (BuildContext context) => LoginScreen(),
+      AdminEvents.routeName: (BuildContext context) => AdminEvents(),
+      
     },
   ));
 }

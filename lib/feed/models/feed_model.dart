@@ -1,9 +1,3 @@
-// class ListOfFeeds {
-//   final List<FeedModel> allFeeds;
-
-//   ListOfFeeds({required this.allFeeds});
-// }
-
 // this class describes what a single feed should contain within
 class FeedModel {
   final imgUrl;

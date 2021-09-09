@@ -47,10 +47,10 @@ class _ProgramsPageState extends State<ProgramsPage> {
             child:
                 BlocBuilder<ProgramBloc, ProgramState>(builder: (ctx, state) {
               // the first time we get to feeds page
-              final feedBloc = BlocProvider.of<ProgramBloc>(ctx);
+              final programBloc = BlocProvider.of<ProgramBloc>(ctx);
 
               if (state is ProgramLoading) {
-                feedBloc.add(LoadProgramsEvent());
+                programBloc.add(LoadProgramsEvent());
 
                 return Center(
                   child: Container(
@@ -106,11 +106,14 @@ class _ProgramsPageState extends State<ProgramsPage> {
 
                     Expanded(
                       child: ListView.builder(
-                        itemCount: theFeeds.length,
-                        itemBuilder: (BuildContext context, i) {
-                          return TheCard();
-                        },
-                      ),
+                          itemCount: theFeeds.length,
+                          itemBuilder: (BuildContext context, i) {
+                            return TheCard(
+                              title: "",
+                              author: "",
+                              description: "",
+                            );
+                          }),
                     ),
                   ],
                 );
