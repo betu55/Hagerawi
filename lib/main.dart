@@ -28,11 +28,10 @@ void main() {
       Login.routeName: (BuildContext context) => Login(),
       Quiz.routeName: (BuildContext context) => Quiz(),
       EventsPage.routeName: (BuildContext context) => EventsPage(),
-      SingleEvent.routeName: (BuildContext context) => SingleEvent(),
+      // SingleEvent.routeName: (BuildContext context) => SingleEvent(),
       Feeds.routeName: (BuildContext context) => Feeds(),
       LoginScreen.routeName: (BuildContext context) => LoginScreen(),
       AdminEvents.routeName: (BuildContext context) => AdminEvents(),
-      
     },
   ));
 }
