@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hagerawi_app/auth/bloc/auth_event.dart';
 import 'package:hagerawi_app/auth/bloc/auth_state.dart';
@@ -24,13 +23,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         // print(username);
         // print(password);
         AuthModel user = await authoRepo.authenticate(username, password);
-        print(user.username);
-        print(user.password);
-        yield LoggedIn(user.username, user.password);
-      } catch (_) {
-        yield AuthFailed(
-            errorMsg:
-                "Sorry server side error occured, you have nothing to do with it ;).");
+        print("from bloc");
+        try {
+          yield LoggedIn(user.username, user.password);
+        } catch (e) {
+          print(e);
+        }
+      } catch (err) {
+        yield AuthFailed(errorMsg: err.toString());
       }
     }
   }

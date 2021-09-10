@@ -23,12 +23,23 @@ class AuthRepo {
       ),
     );
 
-    if (result.statusCode == 200) {
-      final user = json.decode(result.body);
-      print("the user is $user");
-      return AuthModel.fromJson(user);
+    var response = jsonDecode(result.body);
+
+    if (response == null) {
+      throw Exception("user doesn't exist");
     } else {
-      throw Exception('failed to login');
+      return AuthModel.fromJson(response);
     }
+
+    return AuthModel(username: "mike", password: "butchabel");
+    // if (result.statusCode == 200) {
+    //   print(result);
+    //   final user = result.body;
+    //   if (user == null) throw Exception("Hell no");
+    //   else
+    //     return AuthModel(user.username, user.password);
+    // } else {
+    //   throw Exception('failed to login');
+    // }
   }
 }
