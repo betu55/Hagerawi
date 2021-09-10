@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hagerawi_app/auth/repository/auth_repo.dart';
 import 'package:hagerawi_app/components/fields.dart';
-import 'package:hagerawi_app/feed/bloc/feed_bloc.dart';
-import 'package:hagerawi_app/feed/repository/feed_repo.dart';
-import 'package:hagerawi_app/main.dart';
-import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/signup.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hagerawi_app/auth/bloc/auth_bloc.dart';
