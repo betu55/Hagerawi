@@ -26,7 +26,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: Login.routeName,
+    initialRoute: Feeds.routeName,
 
     routes: {
       Trial.routeName: (BuildContext context) => Trial(),

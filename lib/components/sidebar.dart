@@ -64,9 +64,12 @@ class _NavbarState extends State<Navbar> {
                     menuItem(text: "Quiz", icon: Icons.quiz_outlined),
                   ],
                 ),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     menuItem(text: "Settings", icon: Icons.settings),
+                    menuItem(text: "Logout", icon: Icons.logout),
                     SizedBox(
                       height: 10,
                     )
