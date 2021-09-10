@@ -8,7 +8,6 @@ import 'package:hagerawi_app/components/sidebar.dart';
 import 'package:hagerawi_app/components/cards.dart';
 import 'package:hagerawi_app/feed/bloc/blocs.dart';
 import 'package:hagerawi_app/feed/models/feed_model.dart';
-import 'package:hagerawi_app/feed/screens/feeds.dart';
 
 class PostFeeds extends StatelessWidget {
   PostFeeds({Key? key}) : super(key: key);
@@ -27,7 +26,7 @@ class PostFeeds extends StatelessWidget {
           backgroundColor: Colors.grey.shade700,
           title: Center(
               child: Text(
-            'Post Feeds ',
+            'New Feeds ',
             style: TextStyle(fontSize: 30),
           )),
         ),
@@ -38,7 +37,9 @@ class PostFeeds extends StatelessWidget {
               final adminBloc = BlocProvider.of<AdminFeedBloc>(ctx);
 
               if (state is FeedsLoaded) {
-                Navigator.pushNamed(context, Feeds.routeName);
+                return Center(
+                  child: Text("Posted feeds successfully"),
+                );
               } else if (state is FeedsUploading) {
                 return Center(
                   child: Container(
@@ -80,9 +81,9 @@ class PostFeeds extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    theItems(title, "title"),
-                    SizedBox(height: 10),
                     theItems(author, "author"),
+                    SizedBox(height: 10),
+                    theItems(title, "title"),
                     SizedBox(height: 10),
                     theItems(content, "content"),
                     SizedBox(height: 10),
@@ -101,15 +102,8 @@ class PostFeeds extends StatelessWidget {
                           primary: Colors.blueGrey,
                         ),
                         onPressed: () {
-                          print('pressed!!!');
-                          print([
-                            title.text,
-                            author.text,
-                            content.text,
-                            detailed.text
-                          ]);
                           adminBloc.add(
-                            PostFeedsEvent(title.text, author.text,
+                            PostFeedsEvent(author.text, title.text,
                                 content.text, detailed.text),
                           );
                         },
@@ -140,7 +134,6 @@ class PostFeeds extends StatelessWidget {
           height: 45,
           margin: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
           child: TextField(
-            controller: ctr,
             cursorHeight: 45,
             style: TextStyle(fontSize: 25, color: Colors.white24),
             decoration: InputDecoration(hintText: hint),
