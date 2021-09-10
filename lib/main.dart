@@ -1,10 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:hagerawi_app/pages/feeds_post.dart';
+
+import 'package:hagerawi_app/quiz/bloc/trial.dart';
+import 'package:hagerawi_app/quiz/screens/quiz.dart';
 import 'package:hagerawi_app/feed/screens/feeds.dart';
-import 'package:hagerawi_app/pages/quiz.dart';
-import 'package:hagerawi_app/auth/screens/signup.dart';
-import 'package:hagerawi_app/auth/screens/login.dart';
+import 'auth/screens/signup.dart';
+import 'auth/screens/login.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/single_event.dart';
 import 'package:hagerawi_app/pages/events_post.dart';
@@ -22,9 +26,11 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: Feeds.routeName,
+    initialRoute: PostFeeds.routeName,
 
     routes: {
+      PostFeeds.routeName: (BuildContext context) => PostFeeds(),
+      Trial.routeName: (BuildContext context) => Trial(),
       Signup.routeName: (BuildContext context) => Signup(),
       Login.routeName: (BuildContext context) => Login(),
       Quiz.routeName: (BuildContext context) => Quiz(),

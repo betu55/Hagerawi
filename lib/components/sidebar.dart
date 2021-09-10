@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hagerawi_app/auth/screens/login.dart';
 import 'package:hagerawi_app/feed/screens/feeds.dart';
-import 'package:hagerawi_app/pages/quiz.dart';
+import 'package:hagerawi_app/quiz/screens/quiz.dart';
 import 'cards.dart';
 
 Color darkGreyHexa = Color(0xff777777);
