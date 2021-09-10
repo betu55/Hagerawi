@@ -73,7 +73,7 @@ Widget InputField(String hint, TextEditingController con) {
   );
 }
 
-Widget CommentInputField(String hint, TextEditingController con) {
+Widget CommentInputField(String hint, TextEditingController con, fun) {
   return TextField(
     controller: con,
     textInputAction: TextInputAction.go,
@@ -83,7 +83,9 @@ Widget CommentInputField(String hint, TextEditingController con) {
     textAlignVertical: TextAlignVertical.center,
     decoration: InputDecoration(
       suffixIcon: InkWell(
-        onTap: () {},
+        onTap: () {
+          fun();
+        },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Icon(

@@ -38,5 +38,18 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
         yield FeedsNotLoaded();
       }
     }
+
+    if (event is FeedCommentEvent) {
+      yield FeedCommentLoading();
+      try {
+        // print(event.props[0].toString());
+        List<FeedModel> comments = await feedRepo.getComments();
+
+        print(comments);
+        yield FeedCommentLoaded(comments);
+      } catch (_) {
+        yield FeedCommentNotLoaded();
+      }
+    }
   }
 }

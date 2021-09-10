@@ -21,3 +21,11 @@ class SearchFeedsEvent extends FeedEvent {
   @override
   List<Object?> get props => [_keyword];
 }
+
+class FeedCommentEvent extends FeedEvent {
+  final _comment;
+  FeedCommentEvent(this._comment);
+
+  @override
+  List<Object?> get props => [_comment];
+}
