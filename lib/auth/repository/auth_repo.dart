@@ -31,4 +31,29 @@ class AuthRepo {
       throw Exception('failed to login');
     }
   }
+
+  Future<AuthModel> register(String username, String password) async {
+    final result = await http.Client().post(
+      Uri.parse("http://localhost:5000/user/"),
+      headers: {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(
+        <String, String>{
+          "username": username.toString(),
+          "password": password.toString()
+        },
+      ),
+    );
+
+    if (result.statusCode == 200) {
+      final user = json.decode(result.body);
+      print("user $user");
+      return AuthModel.fromJson(user);
+    } else {
+      throw Exception('failed to signup');
+    }
+  }
 }

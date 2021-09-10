@@ -7,8 +7,8 @@ import 'package:hagerawi_app/quiz/bloc/trial.dart';
 import 'package:hagerawi_app/quiz/screens/quiz.dart';
 import 'package:hagerawi_app/feed/screens/feeds.dart';
 
-import 'package:hagerawi_app/pages/signup.dart';
-import 'package:hagerawi_app/pages/login.dart';
+import 'package:hagerawi_app/auth/screens/signup.dart';
+import 'package:hagerawi_app/auth/screens/login.dart';
 import 'package:hagerawi_app/pages/events.dart';
 import 'package:hagerawi_app/pages/single_event.dart';
 import 'package:hagerawi_app/pages/events_post.dart';

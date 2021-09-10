@@ -7,7 +7,7 @@ import 'package:hagerawi_app/feed/bloc/feed_bloc.dart';
 import 'package:hagerawi_app/feed/repository/feed_repo.dart';
 import 'package:hagerawi_app/main.dart';
 import 'package:hagerawi_app/pages/events.dart';
-import 'package:hagerawi_app/pages/signup.dart';
+import 'package:hagerawi_app/auth/screens/signup.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hagerawi_app/auth/bloc/auth_bloc.dart';
 import 'package:hagerawi_app/auth/bloc/auth_event.dart';
@@ -144,7 +144,7 @@ class Login extends StatelessWidget {
                                   );
                                 },
                                 child: Text(
-                                  "Sign-in",
+                                  "SignUp",
                                   style: TextStyle(color: Colors.blueGrey),
                                 ),
                               )
