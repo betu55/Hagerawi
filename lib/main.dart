@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hagerawi_app/auth/screens/login_screen.dart';
+import 'package:hagerawi_app/pages/feeds_post.dart';
 
 import 'package:hagerawi_app/quiz/bloc/trial.dart';
 import 'package:hagerawi_app/quiz/screens/quiz.dart';
@@ -26,9 +27,10 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: Login.routeName,
+    initialRoute: PostFeeds.routeName,
 
     routes: {
+      PostFeeds.routeName: (BuildContext context) => PostFeeds(),
       Trial.routeName: (BuildContext context) => Trial(),
       Signup.routeName: (BuildContext context) => Signup(),
       Login.routeName: (BuildContext context) => Login(),

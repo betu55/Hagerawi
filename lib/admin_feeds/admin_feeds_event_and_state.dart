@@ -1,15 +1,22 @@
 import 'dart:async';
 
-import 'package:hagerawi_app/admin_feeds/admin_feeds_model.dart';
+import 'package:equatable/equatable.dart';
+import 'package:hagerawi_app/pages/feeds_post.dart';
 
 // event base class
-abstract class AdminFeedEvent {}
+abstract class AdminFeedEvent extends Equatable {}
 
-class FetchAdminFeedsEvent extends AdminFeedEvent {
-  FetchAdminFeedsEvent();
+class PostFeedsEvent extends AdminFeedEvent {
+  PostFeedsEvent(this._title, this._author, this._content, this._detailed);
+
+  final String _title;
+  final String _author;
+  final String _content;
+  final String _detailed;
+
+  @override
+  List<Object?> get props => [_title, _author, _content, _detailed];
 }
-
-class SearchFeedEvent extends AdminFeedEvent {}
 
 // state base class
 abstract class AdminFeedState {}
@@ -17,13 +24,19 @@ abstract class AdminFeedState {}
 class FeedsUploading extends AdminFeedState {}
 
 class FeedsUploaded extends AdminFeedState {
-  List<AdminFeedsModel> _feeds;
+  final String _title;
+  final String _author;
+  final String _content;
+  final String _detailed;
 
-  FeedsUploaded(this._feeds);
-
-  List<AdminFeedsModel> get getFeeds => _feeds;
+  FeedsUploaded(this._title, this._author, this._content, this._detailed);
 }
 
-class FeedSearched extends AdminFeedState {}
-
 class AdminFeedsNotUploaded extends AdminFeedState {}
+
+class UploadingFailed extends AdminFeedState {
+  final String errorMsg;
+
+  UploadingFailed({required this.errorMsg});
+  String get getErrorMsg => errorMsg;
+}

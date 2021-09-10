@@ -4,27 +4,31 @@ import 'dart:convert';
 
 class AdminFeedRepo {
   // get fututr for getting list of feeds
-  Future<List<AdminFeedsModel>> getFeeds() async {
+  Future<AdminFeedsModel> postFeeds(
+      String title, String author, String content, String detailed) async {
     //declare from where we will be getting our list of objects
-    final result = await http.Client()
-        .get(Uri.parse("http://localhost:5000/feeds/"), headers: {
-      "Accept": "application/json",
-      "Access-Control_Allow_Origin": "*"
-    });
-    if (result.statusCode == 200) {
-      final feeds = json.decode(result.body).cast<Map<String, dynamic>>();
-      //print(feeds);
+    final result = await http.Client().post(
+      Uri.parse("http://localhost:5000/feeds/"),
+      headers: {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(
+        <String, String>{
+          "title": title.toString(),
+          "author": author.toString(),
+          "content": content.toString(),
+          "detailed": detailed.toString(),
+        },
+      ),
+    );
 
-      List<AdminFeedsModel> feedList = feeds.map<AdminFeedsModel>((json) {
-        return AdminFeedsModel.fromJson(json);
-      }).toList();
+    var response = jsonDecode(result.body);
 
-      // print(feedList[0].author);
-      return feedList;
-    } else {
-      throw Exception('failed to load from server');
-    }
+    if (response == null)
+      throw Exception("Could not post feed!");
+    else
+      return AdminFeedsModel.fromJson(response);
   }
-
-  // Future<FeedModel> getSingleFeed() {}
 }
