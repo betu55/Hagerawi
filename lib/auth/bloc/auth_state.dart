@@ -11,7 +11,16 @@ class LoggedIn extends AuthState {
   String get getUsername => _username;
 }
 
-class LoggedOut extends AuthState {}
+class Registered extends AuthState {
+  final String _username;
+  final String _password;
+
+  Registered(this._username, this._password);
+
+  String get getUsername => _username;
+}
+
+class Neutral extends AuthState {}
 
 class AuthFailed extends AuthState {
   final String errorMsg;
@@ -20,3 +29,11 @@ class AuthFailed extends AuthState {
 
   String get getErrorMsg => errorMsg;
 }
+
+class EmpFieldState extends AuthState {}
+
+class PassDontMatchState extends AuthState {}
+
+class UserAlreadyExists extends AuthState {}
+
+class RegistrationInProgress extends AuthState {}
