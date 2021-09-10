@@ -10,7 +10,6 @@ class FetchFeedsEvent extends FeedEvent {
   FetchFeedsEvent();
 
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
@@ -20,6 +19,5 @@ class SearchFeedsEvent extends FeedEvent {
   SearchFeedsEvent(this._keyword);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [_keyword];
 }

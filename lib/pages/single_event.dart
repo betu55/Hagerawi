@@ -230,7 +230,7 @@ class _SingleEventState extends State<SingleEvent> {
                                             padding: EdgeInsets.all(20)),
                                         onPressed: () {
                                           colorProvider.changeColor2(
-                                            Colors.grey.shade500,
+                                            Colors.red,
                                           );
                                         },
                                         child: Text("No, I'm not going"),

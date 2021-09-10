@@ -43,44 +43,46 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.0),
-              BlocConsumer<AuthBloc, AuthState>(
-                listener: (ctx, authState) {
-                  if (authState is LoggedIn) {
-                    Navigator.of(context).pushNamed(Feeds.routeName);
-                  }
-                },
-                builder: (ctx, authState) {
-                  Widget buttonChild = Text("Login");
+              // BlocConsumer<AuthBloc, AuthState>(
+              //   listener: (ctx, authState) {
+              //     if (authState is LoggedIn) {
+              //       Navigator.of(context).pushNamed(Feeds.routeName);
+              //     }
+              //   },
+              //   builder: (ctx, authState) {
+              //     Widget buttonChild = Text("Login");
 
-                  if (authState is LoginInprogress) {
-                    buttonChild = SizedBox(
-                      height: 20,
-                      width: 20,
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                      ),
-                    );
-                  }
+              //     if (authState is LoginInprogress) {
+              //       buttonChild = SizedBox(
+              //         height: 20,
+              //         width: 20,
+              //         child: CircularProgressIndicator(
+              //           color: Colors.white,
+              //         ),
+              //       );
+              //     }
 
-                  if (authState is AuthFailed) {
-                    buttonChild = Text(authState.errorMsg);
-                  }
+              //     if (authState is AuthFailed) {
+              //       buttonChild = Text(authState.errorMsg);
+              //     }
 
-                  return ElevatedButton(
-                    onPressed: () {
-                      final authBloc = BlocProvider.of<AuthBloc>(context);
+              // return Expanded(
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       final authBloc = BlocProvider.of<AuthBloc>(context);
 
-                      authBloc.add(
-                        LoginEvent(
-                          email: emailTextController.text,
-                          password: passwordTextController.text,
-                        ),
-                      );
-                    },
-                    child: buttonChild,
-                  );
-                },
-              ),
+              //       authBloc.add(
+              //         LoginEvent(
+              //           email: emailTextController.text,
+              //           password: passwordTextController.text,
+              //         ),
+              //       );
+              //     },
+              //     child: buttonChild,
+              //   ),
+              // );
+              // },
+              // ),
             ],
           ),
         ),
