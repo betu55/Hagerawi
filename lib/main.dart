@@ -26,7 +26,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: PostFeeds.routeName,
+    initialRoute: Feeds.routeName,
 
     routes: {
       PostFeeds.routeName: (BuildContext context) => PostFeeds(),

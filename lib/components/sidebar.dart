@@ -211,7 +211,9 @@ class _NavbarState extends State<Navbar> {
                     ),
                   ],
                 ),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     menuItem(
                       text: "settings",

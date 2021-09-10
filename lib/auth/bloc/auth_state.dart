@@ -22,6 +22,18 @@ class Registered extends AuthState {
 
 class Neutral extends AuthState {}
 
+class SignupInProgress extends AuthState {}
+
+class SignupSucess extends AuthState {
+  final String _username;
+  final String _password;
+
+  SignupSucess(this._username, this._password);
+
+  String get getUsername => _username;
+  String get getPassword => _password;
+}
+
 class AuthFailed extends AuthState {
   final String errorMsg;
 

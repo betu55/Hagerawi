@@ -3,6 +3,7 @@ import 'package:hagerawi_app/auth/bloc/auth_event.dart';
 import 'package:hagerawi_app/auth/bloc/auth_state.dart';
 import 'package:hagerawi_app/auth/models/auth_model.dart';
 import 'package:hagerawi_app/auth/repository/auth_repo.dart';
+import 'package:hagerawi_app/auth/screens/signup.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthRepo authoRepo;

@@ -203,7 +203,7 @@ class Login extends StatelessWidget {
                                   );
                                 },
                                 child: Text(
-                                  "Sign-in",
+                                  "SignUp",
                                   style: TextStyle(color: Colors.blueGrey),
                                 ),
                               )
