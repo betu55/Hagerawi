@@ -33,7 +33,6 @@ class FeedRepo {
       "Accept": "application/json",
       "Access-Control_Allow_Origin": "*"
     });
-
     if (result.statusCode == 200) {
       final feeds = json.decode(result.body);
       print(feeds.length);

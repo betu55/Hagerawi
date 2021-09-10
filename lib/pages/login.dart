@@ -42,121 +42,10 @@ class Login extends StatelessWidget {
           child: BlocBuilder<AuthBloc, AuthState>(
             builder: (ctx, state) {
               final authBloc = BlocProvider.of<AuthBloc>(ctx);
-              if (state is LoggedOut) {
-                return Stack(
-                  children: [
-                    //main background
-                    Container(
-                      color: Colors.grey.shade800,
-                    ),
-                    Column(
-                      children: [
-                        //this is the gradient container contents
-                        Container(
-                          height: size.height / 1.3,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade500,
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: [
-                                Colors.grey.shade600,
-                                Colors.blueGrey.shade800,
-                              ],
-                            ),
-                            borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                child: Text(
-                                  "Sign-in",
-                                  style: TextStyle(
-                                    color: Colors.grey.shade200.withAlpha(120),
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                child: InputFieldAuth(
-                                    "username", 1, authFieldController1),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 10),
-                                child: InputFieldAuth(
-                                    "password", 2, authFieldController2),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20)),
-                                width: double.infinity,
-                                height: 45,
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: 50, vertical: 10),
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Colors.blueGrey,
-                                    ),
-                                    onPressed: () {
-                                      authBloc.add(LoginEvent(
-                                          authFieldController1.text,
-                                          authFieldController2.text));
-                                    },
-                                    child: Text("Sign-in")),
-                              ),
-                            ],
-                          ),
-                        ),
-                        //this is the bottom link
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Don't have an account? | ",
-                                style: TextStyle(
-                                  color: Colors.grey.shade200.withAlpha(120),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return Signup();
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "Sign-in",
-                                  style: TextStyle(color: Colors.blueGrey),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                );
-              }
-              if (state is LoginInprogress) {
+
+              if (state is LoggedIn) {
+                Navigator.pushNamed(context, Feeds.routeName);
+              } else if (state is LoginInprogress) {
                 return Center(
                   child: Container(
                     alignment: Alignment.center,
@@ -191,18 +80,125 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 );
-              }
-              if (state is LoggedIn) {
-                Center(
-                  child: Text('login successful'),
-                );
-              }
-              if (state is AuthFailed) {
+              } else if (state is AuthFailed) {
                 return Center(
                   child: Text("${state.errorMsg}"),
                 );
               }
-              throw AuthFailed(errorMsg: "error logging in");
+              return Stack(
+                children: [
+                  //main background
+                  Container(
+                    color: Colors.grey.shade800,
+                  ),
+                  Column(
+                    children: [
+                      //this is the gradient container contents
+                      Container(
+                        height: size.height / 1.3,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade500,
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.grey.shade600,
+                              Colors.blueGrey.shade800,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 10),
+                              child: Text(
+                                "Sign-in",
+                                style: TextStyle(
+                                  color: Colors.grey.shade200.withAlpha(120),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 10),
+                              child: InputFieldAuth(
+                                  "username", 1, authFieldController1),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 10),
+                              child: InputFieldAuth(
+                                  "password", 2, authFieldController2),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20)),
+                              width: double.infinity,
+                              height: 45,
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 50, vertical: 10),
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    authBloc.add(LoginEvent(
+                                        authFieldController1.text,
+                                        authFieldController2.text));
+                                  },
+                                  child: Text("Sign-in")),
+                            ),
+                          ],
+                        ),
+                      ),
+                      //this is the bottom link
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Don't have an account? | ",
+                              style: TextStyle(
+                                color: Colors.grey.shade200.withAlpha(120),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return Signup();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "Sign-in",
+                                style: TextStyle(color: Colors.blueGrey),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              );
+
+              // throw AuthFailed(errorMsg: "error logging in");
             },
           ),
         ),
