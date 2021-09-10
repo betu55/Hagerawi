@@ -2,16 +2,22 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hagerawi_app/auth/screens/login.dart';
+import 'package:hagerawi_app/feed/screens/feeds.dart';
+import 'package:hagerawi_app/quiz/screens/quiz.dart';
 import 'cards.dart';
 
 Color darkGreyHexa = Color(0xff777777);
 
-Widget menuItem({required String text, required IconData icon}) {
+Widget menuItem(
+    {required String text, required IconData icon, required BuildContext ctx}) {
   return InkWell(
     splashFactory: InkSplash.splashFactory,
     splashColor: Color(0xff7333333),
     onTap: () {
       print("$text clicked.");
+      print(ctx);
+      Navigator.pushNamed(ctx, '/$text');
     },
     onLongPress: () {
       print("long pressed");
@@ -58,15 +64,160 @@ class _NavbarState extends State<Navbar> {
                     SizedBox(
                       height: 10,
                     ),
-                    menuItem(text: "Feeds", icon: Icons.feed_outlined),
-                    menuItem(text: "Events", icon: Icons.event),
-                    menuItem(text: "Archived", icon: Icons.archive_outlined),
-                    menuItem(text: "Quiz", icon: Icons.quiz_outlined),
+                    InkWell(
+                      splashFactory: InkSplash.splashFactory,
+                      splashColor: Color(0xff7333333),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Feeds();
+                        }));
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Feeds",
+                              style: TextStyle(
+                                  color: darkBlueHex,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Icon(
+                              Icons.feed,
+                              color: darkBlueHex,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      splashFactory: InkSplash.splashFactory,
+                      splashColor: Color(0xff7333333),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Feeds();
+                        }));
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Events",
+                              style: TextStyle(
+                                  color: darkBlueHex,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Icon(
+                              Icons.event,
+                              color: darkBlueHex,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      splashFactory: InkSplash.splashFactory,
+                      splashColor: Color(0xff7333333),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Quiz();
+                        }));
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Questions",
+                              style: TextStyle(
+                                  color: darkBlueHex,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Icon(
+                              Icons.quiz,
+                              color: darkBlueHex,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      splashFactory: InkSplash.splashFactory,
+                      splashColor: Color(0xff7333333),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Feeds();
+                        }));
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Archived",
+                              style: TextStyle(
+                                  color: darkBlueHex,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Icon(
+                              Icons.archive,
+                              color: darkBlueHex,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      splashFactory: InkSplash.splashFactory,
+                      splashColor: Color(0xff7333333),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Login();
+                        }));
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Log-out",
+                              style: TextStyle(
+                                  color: darkBlueHex,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Icon(
+                              Icons.logout,
+                              color: darkBlueHex,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 Column(
                   children: [
-                    menuItem(text: "Settings", icon: Icons.settings),
+                    menuItem(
+                      text: "settings",
+                      icon: Icons.settings,
+                      ctx: context,
+                    ),
                     SizedBox(
                       height: 10,
                     )
