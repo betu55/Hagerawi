@@ -268,3 +268,59 @@ class _SingleEventsCardState extends State<SingleEventsCard> {
     );
   }
 }
+
+class TheCommentCard extends StatefulWidget {
+  final String comment;
+
+  const TheCommentCard({
+    Key? key,
+    required this.comment,
+  }) : super(key: key);
+
+  @override
+  _TheCommentCardState createState() => _TheCommentCardState();
+}
+
+class _TheCommentCardState extends State<TheCommentCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 12, right: 10, left: 10),
+      child: Material(
+        color: Colors.grey.shade500,
+        borderRadius: BorderRadius.circular(10),
+        child: InkWell(
+            borderRadius: BorderRadius.circular(10),
+            splashColor: Colors.blueGrey.withAlpha(100),
+            splashFactory: InkSplash.splashFactory,
+            // onTap: () {
+            //   Navigator.push(
+            //       context,
+            //       new MaterialPageRoute(
+            //           builder: (context) => new SingleEvent()));
+            //   print("pressed");
+            // },
+            child: Container(
+              padding: EdgeInsets.all(0),
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      widget.comment,
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+            )),
+      ),
+    );
+  }
+}

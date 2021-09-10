@@ -46,4 +46,26 @@ class FeedRepo {
       throw Exception('failed to load from server');
     }
   }
+
+  Future<List<FeedModel>> getComments() async {
+    // print(keyword);
+    final result = await http.Client()
+        .get(Uri.parse("http://localhost:5000/feeds/"), headers: {
+      "Accept": "application/json",
+      "Access-Control_Allow_Origin": "*"
+    });
+
+    if (result.statusCode == 200) {
+      final feeds = json.decode(result.body);
+      print(feeds);
+
+      List<FeedModel> comments = feeds.comments.map<FeedModel>((json) {
+        return FeedModel.fromJson(json);
+      }).toList();
+      print(comments.length);
+      return comments;
+    } else {
+      throw Exception('failed to load from server');
+    }
+  }
 }
