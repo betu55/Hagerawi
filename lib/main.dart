@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hagerawi_app/auth/screens/login_screen.dart';
 import 'package:hagerawi_app/pages/feeds.dart';
-import 'package:hagerawi_app/pages/quiz.dart';
+import 'package:hagerawi_app/quiz/bloc/trial.dart';
+import 'package:hagerawi_app/quiz/screens/quiz.dart';
 import 'package:hagerawi_app/pages/signup.dart';
 import 'package:hagerawi_app/pages/login.dart';
 import 'package:hagerawi_app/pages/events.dart';
@@ -23,9 +24,10 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: Signup.routeName,
+    initialRoute: Quiz.routeName,
 
     routes: {
+      Trial.routeName: (BuildContext context) => Trial(),
       Signup.routeName: (BuildContext context) => Signup(),
       Login.routeName: (BuildContext context) => Login(),
       Quiz.routeName: (BuildContext context) => Quiz(),
