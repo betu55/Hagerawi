@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-List<IconData> myIcons = [Icons.person, Icons.email, Icons.password];
+List<IconData> myIcons = [Icons.person, Icons.email, Icons.password, Icons.details, Icons.title];
 
 final formKey = GlobalKey<FormState>();
 
