@@ -8,9 +8,10 @@ void enterPressed() {
   print("enter pressed");
 }
 
-Widget InputFieldAuth(String hint, int iconIndex) {
+Widget InputFieldAuth(String hint, int iconIndex, TextEditingController cont) {
   return TextField(
     // key: formKey,
+    controller: cont,
     style: TextStyle(height: 1.5),
     cursorColor: Colors.grey.shade600,
     cursorHeight: 24,
