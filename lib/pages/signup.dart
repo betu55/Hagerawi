@@ -13,9 +13,13 @@ const kPrimaryColor = Color(0xff777777);
 const kPrimaryLightColor = Colors.white;
 
 class Signup extends StatelessWidget {
-  const Signup({Key? key}) : super(key: key);
+  Signup({Key? key}) : super(key: key);
 
   static const String routeName = "/signup";
+
+  final authFieldController1 = TextEditingController();
+
+  final authFieldController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -72,22 +76,25 @@ class Signup extends StatelessWidget {
                       Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                        child: InputFieldAuth("username", 0),
+                        child:
+                            InputFieldAuth("username", 0, authFieldController1),
                       ),
                       Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                        child: InputFieldAuth("email", 1),
+                        child: InputFieldAuth("email", 1, authFieldController1),
                       ),
                       Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                        child: InputFieldAuth("password", 2),
+                        child:
+                            InputFieldAuth("password", 2, authFieldController1),
                       ),
                       Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                        child: InputFieldAuth("confirm password", 2),
+                        child: InputFieldAuth(
+                            "confirm password", 2, authFieldController1),
                       ),
                       SizedBox(
                         height: 20,
@@ -105,7 +112,7 @@ class Signup extends StatelessWidget {
                             ),
                             onPressed: () {
                               // feedBloc.add(FetchFeedsEvent());
-                              Navigator.pushNamed(context, "/programs");
+                              Navigator.pushNamed(context, "/feeds");
                             },
                             child: Text("Sign-Up")),
                       ),

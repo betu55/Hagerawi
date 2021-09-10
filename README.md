@@ -12,6 +12,6 @@ Features Include:
 Group members:
 	1. Abel Mesele -ATR/9025/12
 	2. Abraham Tesfaye - ATR/2662/11
-	3. Bemnet Semegnew - ATR/6101/11
+	3. Bemenet Semegnew - ATR/6101/11
 	4. Luhana Daniel - ATR/9531/11
 	5. Nahom Tamru - ATR/2313/11
