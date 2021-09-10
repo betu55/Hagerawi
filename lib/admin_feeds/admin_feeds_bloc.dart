@@ -18,7 +18,7 @@ class AdminFeedBloc extends Bloc<AdminFeedEvent, AdminFeedState> {
 
       yield FeedsUploading();
 
-      await Future.delayed(Duration(seconds: 15));
+      await Future.delayed(Duration(seconds: 1));
 
       try {
         AdminFeedsModel feed =
