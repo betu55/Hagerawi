@@ -13,7 +13,7 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
     if (event is FetchFeedsEvent) {
       // this is the first state shown on the UI until the below try-catch code fetches data from our repository layer
       yield FeedsLoading();
-      // await Future.delayed(Duration(seconds: 15));
+
       try {
         List<FeedModel> feeds = await feedRepo.getFeeds();
 
@@ -39,16 +39,34 @@ class FeedBloc extends Bloc<FeedEvent, FeedState> {
       }
     }
 
-    if (event is FeedCommentEvent) {
+    if (event is GetCommentsEvent) {
       yield FeedCommentLoading();
+      await Future.delayed(Duration(seconds: 1));
       try {
-        // print(event.props[0].toString());
-        List<FeedModel> comments = await feedRepo.getComments();
-
-        print(comments);
+        print("the title is: ${event.props[0]}");
+        List comments = await feedRepo.getComments(event.props[0].toString());
+        print("comments in bloc: $comments");
         yield FeedCommentLoaded(comments);
       } catch (_) {
         yield FeedCommentNotLoaded();
+      }
+    }
+
+    if (event is PostCommentEvent) {
+      yield FeedCommentLoading();
+      await Future.delayed(Duration(seconds: 1));
+      try {
+        List updatedCommentList = await feedRepo.postComment(
+          event.props[0].toString(),
+          event.props[1].toString(),
+        );
+        print("the comment and identifier title: ${[
+          event.props[0].toString(),
+          event.props[1].toString(),
+        ]}");
+        yield FeedCommentLoaded(updatedCommentList);
+      } catch (err) {
+        print(err);
       }
     }
   }

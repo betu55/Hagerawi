@@ -30,9 +30,9 @@ class FeedsNotLoaded extends FeedState {}
 class FeedCommentLoading extends FeedState {}
 
 class FeedCommentLoaded extends FeedState {
-  List<FeedModel> _comments;
+  List _comments;
   FeedCommentLoaded(this._comments);
-  List<FeedModel> get getComments => _comments;
+  List get getComments => _comments;
 }
 
 class FeedCommentNotLoaded extends FeedState {}
