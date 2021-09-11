@@ -23,10 +23,11 @@ class PostEvents extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.grey.shade700,
           title: Center(
-              child: Text(
-            'New Events',
-            style: TextStyle(fontSize: 30),
-          )),
+            child: Text(
+              'New Events',
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
         ),
         body: BlocProvider(
           create: (context) => AdminEventBloc(AdminEventRepo()),
