@@ -11,6 +11,7 @@ class AdminEventBloc extends Bloc<AdminEventsEvent, AdminEventState> {
   @override
   Stream<AdminEventState> mapEventToState(AdminEventsEvent event) async* {
     if (event is PostEventsEvent) {
+      print("here it is");
       // this is the first state shown on the UI until the below try-catch code fetches data from our repository layer
       final imgUrl = event.imgUrl;
       final attendees = event.attendees;
@@ -21,16 +22,15 @@ class AdminEventBloc extends Bloc<AdminEventsEvent, AdminEventState> {
 
       yield EventsUploading();
 
-      await Future.delayed(Duration(seconds: 15));
 
       try {
         AdminEventsModel event = await eventRepo.postEvents(
             imgUrl, attendees, postedBy, title, location, content);
         print("at the bloc");
-        yield EventsUploaded(event.imgUrl, event.postedBy, event.attendees,
+        yield EventsUploaded(event.imgUrl, event.attendees, event.postedBy, 
             event.title, event.location, event.content);
       } catch (e) {
-        print(e);
+        print("at the bloc");
         yield UploadingFailed(errorMsg: e.toString());
       }
     }

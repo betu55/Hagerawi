@@ -4,19 +4,20 @@ class EventsUploading extends AdminEventState {}
 
 class EventsUploaded extends AdminEventState {
   final String imgUrl;
-  final int attendees;
+  final String attendees;
   final String postedBy;
   final String title;
   final String location;
   final String content;
 
-  EventsUploaded(    
+  EventsUploaded(
     this.imgUrl,
-    this.postedBy,
     this.attendees,
+    this.postedBy,
     this.title,
     this.location,
-    this.content,);
+    this.content,
+  );
 }
 
 class AdminEventNotUploaded extends AdminEventState {}

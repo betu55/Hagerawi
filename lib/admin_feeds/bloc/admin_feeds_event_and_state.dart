@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
-import 'package:hagerawi_app/pages/feeds_post.dart';
+import 'package:hagerawi_app/admin_feeds/screens/feeds_post.dart';
 
 // event base class
 abstract class AdminFeedEvent extends Equatable {}
