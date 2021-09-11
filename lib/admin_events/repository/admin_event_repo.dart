@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AdminEventRepo {
-  // get fututr for getting list of feeds
   Future<AdminEventsModel> postEvents(String imgUrl, String attendees,
       String postedBy, String title, String location, String content) async {
     //declare from where we will be getting our list of objects
