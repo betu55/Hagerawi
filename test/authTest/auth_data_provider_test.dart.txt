@@ -1,0 +1,49 @@
+import 'dart:convert';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hagerawi_app/auth/models/auth_model.dart';
+import 'package:hagerawi_app/auth/repository/auth_repo.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'auth_data_provider_test.mocks.dart';
+
+@GenerateMocks([http.Client])
+main() {
+  group('AuthProvider test', () {
+    test('registers a user', () async {
+      final client = MockClient();
+      final String _baseUrl = "${StringConstants.BASE_URL_DEVICE}/auth";
+
+      when(client.post(Uri.parse("$_baseUrl/signup"),
+              headers: anyNamed('headers'), body: anyNamed('body')))
+          .thenAnswer((_) async => http.Response(
+              '{ "username": "username", "password": "password"}', 200));
+
+      AuthRepo authDataProvider = new AuthRepo(client);
+
+      expect(
+          await authDataProvider
+              .register(Register(username: "username", password: "password")),
+          isA<RegisterResponse>());
+    });
+
+    test(
+        'Register: throws an exception if the http call completes with an error',
+        () {
+      final client = MockClient();
+      final String _baseUrl = "${StringConstants.BASE_URL_DEVICE}/auth";
+
+      when(client.post(Uri.parse("$_baseUrl/register"),
+              headers: anyNamed('headers'), body: anyNamed('body')))
+          .thenAnswer((_) async => http.Response('Not Found', 400));
+
+      AuthRepo authDataProvider = new AuthRepo(client);
+
+      expect(
+          authDataProvider
+              .register(Register(username: "username", password: "password")),
+          throwsException);
+    });
+  });
+}

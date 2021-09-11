@@ -81,7 +81,10 @@ class Signup extends StatelessWidget {
                             usernameController.text = '';
                             passwordController.text = '';
                             confirmController.text = '';
-                            Navigator.pushNamed(context, Login.routeName);
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return Login();
+                            }));
                           },
                           child: Text("Sign-in"),
                         ),
