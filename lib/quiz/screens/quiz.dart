@@ -49,19 +49,19 @@ class _QuizState extends State<Quiz> {
           create: (context) => QuizBloc(QuizRepo()),
           child: BlocBuilder<QuizBloc, QuizState>(builder: (ctx, state) {
             final quizBloc = BlocProvider.of<QuizBloc>(ctx);
-            if (state is NextQuestionLoading) {
-              return Container(
-                child: Center(
-                  child: Text(
-                    "Are you ready?",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28,
-                    ),
-                  ),
-                ),
-              );
-            }
+            // if (state is NextQuestionLoading) {
+            //   return Container(
+            //     child: Center(
+            //       child: Text(
+            //         "Are you ready?",
+            //         style: TextStyle(
+            //           fontWeight: FontWeight.bold,
+            //           fontSize: 28,
+            //         ),
+            //       ),
+            //     ),
+            //   );
+            // }
             if (state is QuestionsLoading) {
               quizBloc.add(FetchQuizEvent());
 
@@ -80,6 +80,7 @@ class _QuizState extends State<Quiz> {
             if (state is QuestionsLoaded) {
               List<QuizModel> questions = state.getQuestions;
               var quantity = questions.length;
+              print(quantity);
               return j < (quantity)
                   ? Stack(children: [
                       Container(
@@ -111,7 +112,8 @@ class _QuizState extends State<Quiz> {
                               itemCount: 4,
                               itemBuilder: (context, i) {
                                 return GestureDetector(
-                                  onTap: () async* {
+                                  onTap: () async {
+                                    print("touh");
                                     setState(() {
                                       checker = (questions[j].choice[i] ==
                                               questions[j].answer)

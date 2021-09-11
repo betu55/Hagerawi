@@ -7,7 +7,7 @@ class ProgramLoading extends ProgramState {}
 class ProgramLoaded extends ProgramState {
   List<ProgramModel> _programs;
   ProgramLoaded(this._programs);
-  List<ProgramModel> get getEvents => _programs;
+  List<ProgramModel> get getPrograms => _programs;
 }
 
 class ProgramsNotLoaded extends ProgramState {}
