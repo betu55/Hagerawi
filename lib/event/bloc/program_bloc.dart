@@ -16,6 +16,7 @@ class ProgramBloc extends Bloc<ProgramEvent, ProgramState> {
       yield ProgramLoading();
       try {
         List<ProgramModel> programs = await programRepository.getPrograms();
+        print("programs $programs");
         yield ProgramLoaded(programs);
       } catch (_) {
         yield ProgramsNotLoaded();

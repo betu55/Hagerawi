@@ -95,7 +95,7 @@ class _ProgramsPageState extends State<ProgramsPage> {
               if (state is ProgramLoaded) {
                 // thi is the list of feeds
 
-                List<ProgramModel> theEvents = state.getEvents;
+                List<ProgramModel> theEvents = state.getPrograms;
 
                 return Stack(
                   children: [
