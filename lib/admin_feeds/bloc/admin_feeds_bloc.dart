@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hagerawi_app/admin_feeds/admin_feeds_event_and_state.dart';
-import 'package:hagerawi_app/admin_feeds/admin_feeds_model.dart';
-import 'package:hagerawi_app/admin_feeds/admin_feeds_repo.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event_and_state.dart';
+import 'package:hagerawi_app/admin_feeds/models/admin_feeds_model.dart';
+import 'package:hagerawi_app/admin_feeds/repository/admin_feeds_repo.dart';
 
 class AdminFeedBloc extends Bloc<AdminFeedEvent, AdminFeedState> {
   AdminFeedRepo feedRepo;
@@ -9,12 +9,12 @@ class AdminFeedBloc extends Bloc<AdminFeedEvent, AdminFeedState> {
 
   @override
   Stream<AdminFeedState> mapEventToState(AdminFeedEvent event) async* {
-    if (event is FeedsUploaded) {
+    if (event is PostFeedsEvent) {
       // this is the first state shown on the UI until the below try-catch code fetches data from our repository layer
-      final title = event.props[0].toString();
-      final author = event.props[1].toString();
-      final content = event.props[2].toString();
-      final detailed = event.props[3].toString();
+      final title = event.title;
+      final author = event.author;
+      final content = event.content;
+      final detailed = event.detailed;
 
       yield FeedsUploading();
 
@@ -24,12 +24,10 @@ class AdminFeedBloc extends Bloc<AdminFeedEvent, AdminFeedState> {
         AdminFeedsModel feed =
             await feedRepo.postFeeds(title, author, content, detailed);
         print("at the bloc");
-        try {
-          yield FeedsUploaded(title, author, content, detailed);
-        } catch (e) {
-          print(e);
-        }
+        yield FeedsUploaded(
+            feed.title, feed.author, feed.content, feed.detailed);
       } catch (e) {
+        print(e);
         yield UploadingFailed(errorMsg: e.toString());
       }
     }
