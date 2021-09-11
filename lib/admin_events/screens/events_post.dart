@@ -104,23 +104,16 @@ class PostEvents extends StatelessWidget {
                           primary: Colors.blueGrey,
                         ),
                         onPressed: () {
+                          print("at the post button");
                           adminBloc.add(
                             PostEventsEvent(
                                 imgUrl.text,
                                 attendees.text,
-                                int.parse(postedBy.text),
+                                postedBy.text,
                                 title.text,
                                 location.text,
                                 content.text),
                           );
-                          print([
-                            imgUrl.text,
-                            attendees.text,
-                            int.parse(postedBy.text),
-                            title.text,
-                            location.text,
-                            content.text
-                          ]);
                         },
                         child: Text("Post"),
                       ),

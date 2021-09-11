@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class AdminEventRepo {
   // get fututr for getting list of feeds
-  Future<AdminEventsModel> postEvents(String imgUrl, int attendees,
+  Future<AdminEventsModel> postEvents(String imgUrl, String attendees,
       String postedBy, String title, String location, String content) async {
     //declare from where we will be getting our list of objects
 
@@ -16,7 +16,7 @@ class AdminEventRepo {
         "Access-Control_Allow_Origin": "*"
       },
       body: jsonEncode(
-        <String, String>{
+        <String, dynamic>{
           "imgUrl": imgUrl.toString(),
           "attendees": attendees.toString(),
           "postedBy": postedBy.toString(),
@@ -30,9 +30,12 @@ class AdminEventRepo {
     var response = jsonDecode(result.body);
     print(response);
 
-    if (response == null)
+    if (result.statusCode != 200) {
+      print(result.statusCode);
       throw Exception("Could not post feed!");
-    else
+    } else {
+      print(result.statusCode);
       return AdminEventsModel.fromJson(response);
+    }
   }
 }

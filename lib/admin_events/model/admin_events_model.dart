@@ -4,7 +4,7 @@ import 'package:hagerawi_app/components/cards.dart';
 class AdminEventsModel {
   //final imgUrl;
   final String imgUrl;
-  final int attendees;
+  final String attendees;
   final String postedBy;
   final String title;
   final String location;

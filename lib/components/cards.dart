@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hagerawi_app/feed/bloc/feed_bloc.dart';
-import 'package:hagerawi_app/feed/models/feed_model.dart';
-import 'package:hagerawi_app/pages/feeds_post.dart';
 import 'package:hagerawi_app/pages/single_event.dart';
 import 'package:hagerawi_app/feed/screens/single_feed.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 Color darkBlueHex = Color(0xff023047);
 Color darkgreyHex = Color(0xff777777);

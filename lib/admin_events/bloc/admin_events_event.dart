@@ -7,7 +7,7 @@ abstract class AdminEventsEvent extends Equatable {}
 
 class PostEventsEvent extends AdminEventsEvent {
   final String imgUrl;
-  final int attendees;
+  final String attendees;
   final String postedBy;
   final String title;
   final String location;
@@ -15,8 +15,8 @@ class PostEventsEvent extends AdminEventsEvent {
 
   PostEventsEvent(
     this.imgUrl,
-    this.postedBy,
     this.attendees,
+    this.postedBy,
     this.title,
     this.location,
     this.content,
