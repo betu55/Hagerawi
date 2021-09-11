@@ -4,7 +4,7 @@ abstract class QuizState {}
 
 class QuestionsLoading extends QuizState {}
 
-class NextQuestionLoading extends QuizState {}
+// class NextQuestionLoading extends QuizState {}
 
 class QuestionsLoaded extends QuizState {
   List<QuizModel> _questions;

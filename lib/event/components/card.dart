@@ -111,10 +111,10 @@ class TheSingleEventCard extends StatefulWidget {
       : super(key: key);
 
   @override
-  _TheSingleCardState createState() => _TheSingleCardState();
+  _TheSingleEventCardState createState() => _TheSingleEventCardState();
 }
 
-class _TheSingleCardState extends State<TheSingleEventCard> {
+class _TheSingleEventCardState extends State<TheSingleEventCard> {
   @override
   Widget build(BuildContext context) {
     return Container(

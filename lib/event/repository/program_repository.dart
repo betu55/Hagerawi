@@ -4,17 +4,19 @@ import 'dart:convert';
 
 class ProgramRepository {
   Future<List<ProgramModel>> getPrograms() async {
-    Uri url = Uri.parse("localhost:5000/events/");
-    final result = await http.Client().get(url, headers: {
+    final result = await http.Client()
+        .get(Uri.parse("http://localhost:5000/events/"), headers: {
       "Accept": "application/json",
       "Access-Control_Allow_Origin": "*"
     });
 
     if (result.statusCode == 200) {
       final programs = json.decode(result.body);
+      print(result.body);
       List<ProgramModel> programList = programs.map<ProgramModel>((json) {
         return ProgramModel.fromJson(json);
       }).toList();
+      print(programList);
       return programList;
     } else {
       throw Exception('failed to load from server');
