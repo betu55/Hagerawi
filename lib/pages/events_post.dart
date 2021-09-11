@@ -1,198 +1,165 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hagerawi_app/components/sidebar.dart';
-import 'package:hagerawi_app/components/cards.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hagerawi_app/admin_events/bloc/admin_events_bloc.dart';
+import 'package:hagerawi_app/admin_events/bloc/admin_events_event.dart';
+import 'package:hagerawi_app/admin_events/bloc/admin_events_state.dart';
+import 'package:hagerawi_app/admin_events/repository/admin_event_repo.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_bloc.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event_and_state.dart';
+import 'package:hagerawi_app/admin_feeds/repository/admin_feeds_repo.dart';
+import 'package:hagerawi_app/feed/bloc/blocs.dart';
 
-class AdminEvents extends StatefulWidget {
-  const AdminEvents({Key? key}) : super(key: key);
-  static const String routeName = '/admin_feeds';
+class PostEvents extends StatelessWidget {
+  PostEvents({Key? key}) : super(key: key);
+  static const String routeName = "/PostEvents";
 
-  @override
-  _AdminEventsState createState() => _AdminEventsState();
-}
-
-class _AdminEventsState extends State<AdminEvents> {
-  final _myKey = GlobalKey<ScaffoldState>();
+  final postedBy = TextEditingController();
+  final title = TextEditingController();
+  final content = TextEditingController();
+  final location = TextEditingController();
+  final attendees = TextEditingController();
+  final imgUrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style = ElevatedButton.styleFrom(
-        primary: Colors.grey.shade200.withAlpha(120), // background
-        onPrimary: Colors.white,
-        alignment: Alignment.centerRight // foreground
-        );
-
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.blueGrey.shade900,
-      statusBarIconBrightness: Brightness.light,
-    ));
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Events post',
-        home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.blueGrey.shade900,
-            title: const Text('Post Events'),
-          ),
-          body: Center(
-            child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade500,
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Colors.grey.shade600,
-                      Colors.blueGrey.shade800,
-                    ],
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.grey.shade700,
+          title: Center(
+              child: Text(
+            'New Events',
+            style: TextStyle(fontSize: 30),
+          )),
+        ),
+        body: BlocProvider(
+          create: (context) => AdminEventBloc(AdminEventRepo()),
+          child: BlocBuilder<AdminEventBloc, AdminEventState>(
+            builder: (ctx, state) {
+              final adminBloc = BlocProvider.of<AdminEventBloc>(ctx);
+
+              if (state is EventsUploaded) {
+                return Center(
+                  child: Text("Posted events successfully"),
+                );
+              } else if (state is EventsUploading) {
+                return Center(
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade500,
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.grey.shade600,
+                          Colors.blueGrey.shade800,
+                        ],
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          strokeWidth: 3,
+                          color: Colors.blueGrey.shade200,
+                        ),
+                        SizedBox(height: 14),
+                        Text(
+                          "Posting events...",
+                          style: TextStyle(
+                              fontSize: 15, color: Colors.blueGrey.shade200),
+                        ),
+                        SizedBox(height: 14),
+                      ],
+                    ),
                   ),
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                  ),
-                ),
-                child: ListView(
-                  padding: const EdgeInsets.all(40),
-                  children: <Widget>[
+                );
+              }
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    theItems(imgUrl, "imgUrl"),
+                    SizedBox(height: 10),
+                    theItems(attendees, "attendees"),
+                    SizedBox(height: 10),
+                    theItems(postedBy, "postedBy"),
+                    SizedBox(height: 10),
+                    theItems(title, "title"),
+                    SizedBox(height: 10),
+                    theItems(location, "location"),
+                    SizedBox(height: 10),
+                    theItems(content, "content"),
+                    SizedBox(height: 10),
                     Container(
-                        height: 100,
-                        child: Center(
-                          child: Row(
-                            children: const <Widget>[
-                              Expanded(
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                                    child: const Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text('Event Name',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 25)))),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                cursorHeight: 15,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  height: 2,
-                                ),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Event Name',
-                                ),
-                              ))
-                            ],
-                          ),
-                        )),
-                    Container(
-                        height: 100,
-                        child: Center(
-                          child: Row(
-                            children: const <Widget>[
-                              Expanded(
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                                    child: const Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text('Place',
-                                            style: TextStyle(fontSize: 25)))),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                cursorHeight: 15,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  height: 2,
-                                ),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Place',
-                                ),
-                              ))
-                            ],
-                          ),
-                        )),
-                    Container(
-                        height: 100,
-                        child: Center(
-                          child: Row(
-                            children: const <Widget>[
-                              Expanded(
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                                    child: const Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text('Description',
-                                            style: TextStyle(fontSize: 25)))),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                cursorHeight: 15,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  height: 2,
-                                ),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Description',
-                                ),
-                              ))
-                            ],
-                          ),
-                        )),
-                    Container(
-                        height: 100,
-                        child: Center(
-                          child: Row(
-                            children: const <Widget>[
-                              Expanded(
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                                    child: const Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text('Date',
-                                            style: TextStyle(fontSize: 25)))),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Date',
-                                ),
-                              ))
-                            ],
-                          ),
-                        )),
-                    Container(
-                        height: 500,
-                        alignment: Alignment.topCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            ElevatedButton(
-                              style: style,
-                              onPressed: haya,
-                              child: const Text('Submit'),
-                            ),
-                          ],
-                        )),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      width: double.infinity,
+                      height: 45,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blueGrey,
+                        ),
+                        onPressed: () {
+                          adminBloc.add(
+                            PostEventsEvent(
+                                imgUrl.text,
+                                attendees.text,
+                                int.parse(postedBy.text),
+                                title.text,
+                                location.text,
+                                content.text),
+                          );
+                          print([
+                            imgUrl.text,
+                            attendees.text,
+                            int.parse(postedBy.text),
+                            title.text,
+                            location.text,
+                            content.text
+                          ]);
+                        },
+                        child: Text("Post"),
+                      ),
+                    ),
                   ],
-                )),
+                ),
+              );
+            },
           ),
-        ));
+        ),
+      ),
+    );
+  }
+
+  Widget theItems(ctr, String hint) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        new Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.grey.shade800,
+          ),
+          width: 300,
+          height: 45,
+          margin: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+          child: TextField(
+            controller: ctr,
+            cursorHeight: 45,
+            style: TextStyle(fontSize: 25, color: Colors.white24),
+            decoration: InputDecoration(hintText: hint),
+          ),
+        ),
+      ],
+    );
   }
 }
-
-void haya() {
-  print("text");
-}
-
-  /// Creates a [Category].
-  ///
-  /// A [Category] saves the name of the Category (e.g. 'Length'), its color for
-  /// the UI, and the icon that represents it (e.g. a ruler).
-  // While the @required checks for whether a named parameter is passed in,
-  // it doesn't check whether the object passed in is null. We check that
-  // in the assert statement.
