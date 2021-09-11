@@ -22,7 +22,6 @@ class AdminEventBloc extends Bloc<AdminEventsEvent, AdminEventState> {
 
       yield EventsUploading();
 
-
       try {
         AdminEventsModel event = await eventRepo.postEvents(
             imgUrl, attendees, postedBy, title, location, content);

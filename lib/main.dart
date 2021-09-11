@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:hagerawi_app/admin_feeds/screens/feeds_post.dart';
+import 'package:hagerawi_app/admin_questions/screens/post_questions.dart';
 
 import 'package:hagerawi_app/quiz/bloc/trial.dart';
 import 'package:hagerawi_app/quiz/screens/quiz.dart';
@@ -25,11 +26,11 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: Login(),
 
-      initialRoute: Feeds.routeName,
+      initialRoute: Login.routeName,
 
       routes: {
+        PostQuestions.routeName:(BuildContext context) => PostQuestions(),
         PostFeeds.routeName: (BuildContext context) => PostFeeds(),
         Trial.routeName: (BuildContext context) => Trial(),
         Signup.routeName: (BuildContext context) => Signup(),
