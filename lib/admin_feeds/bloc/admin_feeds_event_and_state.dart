@@ -7,15 +7,16 @@ import 'package:hagerawi_app/pages/feeds_post.dart';
 abstract class AdminFeedEvent extends Equatable {}
 
 class PostFeedsEvent extends AdminFeedEvent {
-  PostFeedsEvent(this._title, this._author, this._content, this._detailed);
 
-  final String _title;
-  final String _author;
-  final String _content;
-  final String _detailed;
+  final String title;
+  final String author;
+  final String content;
+  final String detailed;
 
+  PostFeedsEvent(this.title, this.author, this.content, this.detailed);
+  
   @override
-  List<Object?> get props => [_title, _author, _content, _detailed];
+  List<Object?> get props => [title, author, content, detailed];
 }
 
 // state base class

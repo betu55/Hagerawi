@@ -1,4 +1,4 @@
-import 'package:hagerawi_app/admin_feeds/admin_feeds_model.dart';
+import 'package:hagerawi_app/admin_feeds/models/admin_feeds_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -7,7 +7,8 @@ class AdminFeedRepo {
   Future<AdminFeedsModel> postFeeds(
       String title, String author, String content, String detailed) async {
     //declare from where we will be getting our list of objects
-    final result = await http.Client().post(
+    
+    final result = await http.post(
       Uri.parse("http://localhost:5000/feeds/"),
       headers: {
         "content-type": "application/json",
@@ -25,6 +26,7 @@ class AdminFeedRepo {
     );
 
     var response = jsonDecode(result.body);
+    print(response);
 
     if (response == null)
       throw Exception("Could not post feed!");
