@@ -11,7 +11,8 @@ import 'package:hagerawi_app/feed/repository/feed_repo.dart';
 
 // ignore: camel_case_types
 class Feeds extends StatefulWidget {
-  const Feeds({Key? key}) : super(key: key);
+  final String username;
+  const Feeds({Key? key, required this.username}) : super(key: key);
   static const String routeName = '/feeds';
 
   @override
@@ -213,7 +214,7 @@ class _FeedsState extends State<Feeds> {
                                         child: Container(
                                           padding: EdgeInsets.all(8),
                                           child: Text(
-                                            "Welcome Betu",
+                                            "Welcome ${widget.username}",
                                             style: TextStyle(
                                               color: Colors.grey.shade200
                                                   .withAlpha(120),
@@ -379,7 +380,7 @@ class _FeedsState extends State<Feeds> {
                                         child: Container(
                                           padding: EdgeInsets.all(8),
                                           child: Text(
-                                            "Welcome Betu",
+                                            "Welcome ${widget.username}",
                                             style: TextStyle(
                                               color: Colors.grey.shade200
                                                   .withAlpha(120),

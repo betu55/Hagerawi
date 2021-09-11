@@ -46,7 +46,9 @@ class Login extends StatelessWidget {
                 SchedulerBinding.instance!.addPostFrameCallback((_) {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (BuildContext context) {
-                    return Feeds();
+                    return Feeds(
+                      username: state.getUsername,
+                    );
                   }));
                 });
               }
@@ -203,7 +205,7 @@ class Login extends StatelessWidget {
                                   );
                                 },
                                 child: Text(
-                                  "SignUp",
+                                  "Sign-Up",
                                   style: TextStyle(color: Colors.blueGrey),
                                 ),
                               )
@@ -316,7 +318,7 @@ class Login extends StatelessWidget {
                                 );
                               },
                               child: Text(
-                                "Sign-in",
+                                "Sign-Up",
                                 style: TextStyle(color: Colors.blueGrey),
                               ),
                             )
