@@ -8,7 +8,7 @@
 class AdminFeedsModel {
   //final imgUrl;
   final String title;
-  final String desc;
+  final String content;
   final String detailed;
   final String author;
 
@@ -16,14 +16,14 @@ class AdminFeedsModel {
       {//required this.imgUrl, 
       required this.title, 
       required this.author, 
-      required this.desc, 
+      required this.content, 
       required this.detailed});
 
       factory AdminFeedsModel.fromJson(Map<String, dynamic> json) {
     return AdminFeedsModel(
       title: json['title'],
       author: json['author'],
-      desc: json['desc'],
+      content: json['content'],
       detailed: json['detailed'],
     );
   }
@@ -39,25 +39,4 @@ class AdminFeedsModel {
   } */
 }
 
-class UpdatePost extends AdminFeedsModel{
-  
-  UpdatePost({
-    required title,
-    required desc,
-    required detailed,
-    required author,
-  }) : super(title:title, desc: desc, detailed:detailed , author: author);
 
-  UpdatePost copyWith({
-    String? title,
-    int? desc,
-    String? detailed,
-    String? author,
-  }) =>
-      UpdatePost(
-        title: title ?? this.title,
-        desc: desc ?? this.desc,
-        detailed: detailed ?? this.detailed,
-        author: author ?? this.author,
-      );
-}

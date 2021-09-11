@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hagerawi_app/admin_feeds/admin_feeds_bloc.dart';
-import 'package:hagerawi_app/admin_feeds/admin_feeds_event_and_state.dart';
-import 'package:hagerawi_app/admin_feeds/admin_feeds_repo.dart';
-import 'package:hagerawi_app/components/fields.dart';
-import 'package:hagerawi_app/components/sidebar.dart';
-import 'package:hagerawi_app/components/cards.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_bloc.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event_and_state.dart';
+import 'package:hagerawi_app/admin_feeds/repository/admin_feeds_repo.dart';
 import 'package:hagerawi_app/feed/bloc/blocs.dart';
-import 'package:hagerawi_app/feed/models/feed_model.dart';
 
 class PostFeeds extends StatelessWidget {
   PostFeeds({Key? key}) : super(key: key);
@@ -17,6 +13,7 @@ class PostFeeds extends StatelessWidget {
   final title = TextEditingController();
   final content = TextEditingController();
   final detailed = TextEditingController();
+  final imgUrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +86,8 @@ class PostFeeds extends StatelessWidget {
                     SizedBox(height: 10),
                     theItems(detailed, "detailed"),
                     SizedBox(height: 10),
+                    theItems(imgUrl, "imgUrl"),
+                    SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
@@ -106,6 +105,12 @@ class PostFeeds extends StatelessWidget {
                             PostFeedsEvent(author.text, title.text,
                                 content.text, detailed.text),
                           );
+                          print([
+                            author.text,
+                            title.text,
+                            content.text,
+                            detailed.text
+                          ]);
                         },
                         child: Text("Post"),
                       ),
@@ -134,6 +139,7 @@ class PostFeeds extends StatelessWidget {
           height: 45,
           margin: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
           child: TextField(
+            controller: ctr,
             cursorHeight: 45,
             style: TextStyle(fontSize: 25, color: Colors.white24),
             decoration: InputDecoration(hintText: hint),

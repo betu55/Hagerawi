@@ -88,14 +88,14 @@ class _QuizState extends State<Quiz> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsets.only(left: 5, right: 5, top: 50),
-                            child: Image.asset(
-                              questions[j].imgUrl,
-                              scale: 1.25,
-                            ),
-                          ),
+                          // Padding(
+                          //   padding:
+                          //       EdgeInsets.only(left: 5, right: 5, top: 50),
+                          //   child: Image.asset(
+                          //     questions[j].imgUrl,
+                          //     scale: 1.25,
+                          //   ),
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
