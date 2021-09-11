@@ -22,28 +22,30 @@ void doSth() {
 void main() {
   GestureBinding.instance?.resamplingEnabled = true;
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    //home: Login(),
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      //home: Login(),
 
-    initialRoute: PostFeeds.routeName,
+      initialRoute: PostEvents.routeName,
 
-    routes: {
-      PostFeeds.routeName: (BuildContext context) => PostFeeds(),
-      Trial.routeName: (BuildContext context) => Trial(),
-      Signup.routeName: (BuildContext context) => Signup(),
-      Login.routeName: (BuildContext context) => Login(),
-      Quiz.routeName: (BuildContext context) => Quiz(),
-      EventsPage.routeName: (BuildContext context) => EventsPage(),
-      ProgramsPage.routeName: (BuildContext context) => ProgramsPage(),
-      SingleEvent.routeName: (BuildContext context) => SingleEvent(
-            title: "",
-            detail: "",
-            author: "",
-          ),
-      // SingleEvent.routeName: (BuildContext context) => SingleEvent(),
-      Feeds.routeName: (BuildContext context) => Feeds(),
-      AdminEvents.routeName: (BuildContext context) => AdminEvents(),
-    },
-  ));
+      routes: {
+        PostFeeds.routeName: (BuildContext context) => PostFeeds(),
+        Trial.routeName: (BuildContext context) => Trial(),
+        Signup.routeName: (BuildContext context) => Signup(),
+        Login.routeName: (BuildContext context) => Login(),
+        Quiz.routeName: (BuildContext context) => Quiz(),
+        EventsPage.routeName: (BuildContext context) => EventsPage(),
+        ProgramsPage.routeName: (BuildContext context) => ProgramsPage(),
+        SingleEvent.routeName: (BuildContext context) => SingleEvent(
+              title: "",
+              detail: "",
+              author: "",
+            ),
+        // SingleEvent.routeName: (BuildContext context) => SingleEvent(),
+        Feeds.routeName: (BuildContext context) => Feeds(),
+        PostEvents.routeName: (BuildContext context) => PostEvents(),
+      },
+    ),
+  );
 }
