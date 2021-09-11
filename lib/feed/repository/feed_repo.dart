@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hagerawi_app/feed/models/feed_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -78,6 +80,11 @@ class FeedRepo {
 
     final result = await http.Client().patch(
       Uri.parse("http://localhost:5000/feeds/$title"),
+      headers: {
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*",
+        // HttpHeaders.authorizationHeader: "121232123123123",
+      },
       body: jsonEncode(
         <String, List<dynamic>>{
           "comments": updatedComments,

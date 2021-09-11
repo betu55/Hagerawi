@@ -12,11 +12,11 @@ class ProgramRepository {
 
     if (result.statusCode == 200) {
       final programs = json.decode(result.body);
-      print(result.body);
+      // print(result.body);
       List<ProgramModel> programList = programs.map<ProgramModel>((json) {
         return ProgramModel.fromJson(json);
       }).toList();
-      print(programList);
+      print("the prog List: $programList");
       return programList;
     } else {
       throw Exception('failed to load from server');
