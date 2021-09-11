@@ -26,7 +26,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: Login(),
 
-    initialRoute: PostFeeds.routeName,
+    initialRoute: Feeds.routeName,
 
     routes: {
       PostFeeds.routeName: (BuildContext context) => PostFeeds(),
@@ -43,7 +43,7 @@ void main() {
           ),
       // SingleEvent.routeName: (BuildContext context) => SingleEvent(),
       Feeds.routeName: (BuildContext context) => Feeds(),
-      AdminEvents.routeName: (BuildContext context) => AdminEvents(),
+      // AdminEvents.routeName: (BuildContext context) => AdminEvents(),
     },
   ));
 }

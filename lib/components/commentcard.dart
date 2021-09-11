@@ -43,7 +43,12 @@ class _CommentCardState extends State<CommentCard> {
               ],
             ),
           ),
-          Expanded(child: Text("${widget.comment}"))
+          Expanded(
+            child: Text(
+              "${widget.comment}",
+              style: TextStyle(fontSize: 15),
+            ),
+          )
         ],
       ),
     );
