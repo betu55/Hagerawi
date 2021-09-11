@@ -72,7 +72,9 @@ class _NavbarState extends State<Navbar> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return Feeds();
+                          return Feeds(
+                            username: "User",
+                          );
                         }));
                       },
                       child: Padding(
@@ -159,7 +161,9 @@ class _NavbarState extends State<Navbar> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return Feeds();
+                          return Feeds(
+                            username: "User",
+                          );
                         }));
                       },
                       child: Padding(

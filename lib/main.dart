@@ -28,7 +28,7 @@ void main() {
       debugShowCheckedModeBanner: false,
 
       initialRoute: Login.routeName,
-
+  
       routes: {
         PostQuestions.routeName:(BuildContext context) => PostQuestions(),
         PostFeeds.routeName: (BuildContext context) => PostFeeds(),
@@ -44,7 +44,6 @@ void main() {
               author: "",
             ),
         // SingleEvent.routeName: (BuildContext context) => SingleEvent(),
-        Feeds.routeName: (BuildContext context) => Feeds(),
         PostEvents.routeName: (BuildContext context) => PostEvents(),
       },
     ),
