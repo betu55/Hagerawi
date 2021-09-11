@@ -4,10 +4,6 @@ import 'package:hagerawi_app/admin_events/bloc/admin_events_bloc.dart';
 import 'package:hagerawi_app/admin_events/bloc/admin_events_event.dart';
 import 'package:hagerawi_app/admin_events/bloc/admin_events_state.dart';
 import 'package:hagerawi_app/admin_events/repository/admin_event_repo.dart';
-import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_bloc.dart';
-import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event_and_state.dart';
-import 'package:hagerawi_app/admin_feeds/repository/admin_feeds_repo.dart';
-import 'package:hagerawi_app/feed/bloc/blocs.dart';
 
 class PostEvents extends StatelessWidget {
   PostEvents({Key? key}) : super(key: key);
