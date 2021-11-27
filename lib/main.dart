@@ -25,11 +25,9 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-
       initialRoute: Login.routeName,
-  
       routes: {
-        PostQuestions.routeName:(BuildContext context) => PostQuestions(),
+        PostQuestions.routeName: (BuildContext context) => PostQuestions(),
         PostFeeds.routeName: (BuildContext context) => PostFeeds(),
         Trial.routeName: (BuildContext context) => Trial(),
         Signup.routeName: (BuildContext context) => Signup(),
