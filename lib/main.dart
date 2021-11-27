@@ -7,7 +7,6 @@ import 'package:hagerawi_app/admin_questions/screens/post_questions.dart';
 
 import 'package:hagerawi_app/quiz/bloc/trial.dart';
 import 'package:hagerawi_app/quiz/screens/quiz.dart';
-import 'package:hagerawi_app/feed/screens/feeds.dart';
 import 'auth/screens/signup.dart';
 import 'auth/screens/login.dart';
 import 'package:hagerawi_app/pages/events.dart';
@@ -26,11 +25,9 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-
       initialRoute: Login.routeName,
-  
       routes: {
-        PostQuestions.routeName:(BuildContext context) => PostQuestions(),
+        PostQuestions.routeName: (BuildContext context) => PostQuestions(),
         PostFeeds.routeName: (BuildContext context) => PostFeeds(),
         Trial.routeName: (BuildContext context) => Trial(),
         Signup.routeName: (BuildContext context) => Signup(),
