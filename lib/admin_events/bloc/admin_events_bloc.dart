@@ -26,11 +26,39 @@ class AdminEventBloc extends Bloc<AdminEventsEvent, AdminEventState> {
         AdminEventsModel event = await eventRepo.postEvents(
             imgUrl, attendees, postedBy, title, location, content);
         print("at the bloc");
-        yield EventsUploaded(event.imgUrl, event.attendees, event.postedBy, 
+        yield EventsUploaded(event.imgUrl, event.attendees, event.postedBy,
             event.title, event.location, event.content);
       } catch (e) {
         print("at the bloc");
         yield UploadingFailed(errorMsg: e.toString());
+      }
+    }
+
+    if (event is UpdateEventsEvent) {
+      final id = event.id;
+
+      yield EventsUploading();
+      try {
+        AdminEventsModel event = await eventRepo.updateEvents(id);
+        print("at the bloc");
+        yield EventsOperationSuccess(event);
+      } catch (e) {
+        print("at the bloc");
+        yield EventsOperationFailed();
+      }
+    }
+
+    if (event is DeleteEventsEvent) {
+      final id = event.id;
+
+      yield EventsUploading();
+      try {
+        AdminEventsModel event = await eventRepo.deleteEvent(id);
+        print("at the bloc");
+        yield EventsOperationSuccess(event);
+      } catch (e) {
+        print("at the bloc");
+        yield EventsOperationFailed();
       }
     }
   }
