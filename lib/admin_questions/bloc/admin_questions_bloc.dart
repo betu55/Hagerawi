@@ -32,5 +32,16 @@ class AdminQuestionBloc extends Bloc<AdminQuestionEvent, AdminQuestionState> {
         yield UploadingFailed(errorMsg: e.toString());
       }
     }
+
+    if (event is UpdateQuestionEvent) {
+      final String id = event.id;
+      try {
+        await questionRepo.updateQuestions(id);
+
+        yield QuestionOperationSuccess(id);
+      } catch (_) {
+        yield QuestionOperationFailed();
+      }
+    }
   }
 }

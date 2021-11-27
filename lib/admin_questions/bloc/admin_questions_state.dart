@@ -19,3 +19,11 @@ class UploadingFailed extends AdminQuestionState {
   UploadingFailed({required this.errorMsg});
   String get getErrorMsg => errorMsg;
 }
+
+class QuestionOperationSuccess extends AdminQuestionState {
+  final String questions;
+
+  QuestionOperationSuccess(this.questions);
+}
+
+class QuestionOperationFailed extends AdminQuestionState {}
