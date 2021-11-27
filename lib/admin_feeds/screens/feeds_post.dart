@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_bloc.dart';
-import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event_and_state.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_state.dart';
 import 'package:hagerawi_app/admin_feeds/repository/admin_feeds_repo.dart';
 import 'package:hagerawi_app/feed/bloc/blocs.dart';
 

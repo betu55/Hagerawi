@@ -36,10 +36,25 @@ class AdminQuestionBloc extends Bloc<AdminQuestionEvent, AdminQuestionState> {
     if (event is UpdateQuestionEvent) {
       final String id = event.id;
       try {
-        await questionRepo.updateQuestions(id);
+        AdminQuestionsModel theQuestion =
+            await questionRepo.updateQuestions(id);
 
-        yield QuestionOperationSuccess(id);
-      } catch (_) {
+        yield QuestionOperationSuccess(theQuestion);
+      } catch (e) {
+        print(e);
+        yield QuestionOperationFailed();
+      }
+    }
+
+    if (event is DeleteQuestionEvent) {
+      final String id = event.id;
+      try {
+        AdminQuestionsModel theQuestion =
+            await questionRepo.deleteQuestions(id);
+
+        yield QuestionOperationSuccess(theQuestion);
+      } catch (e) {
+        print(e);
         yield QuestionOperationFailed();
       }
     }

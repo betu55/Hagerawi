@@ -76,7 +76,7 @@ class AdminQuestionRepo {
     var res = jsonDecode(result.body);
 
     if (res == null)
-      throw Exception("Could not update question");
+      throw Exception("Could not delete question");
     else
       return AdminQuestionsModel.fromJson(res);
   }
