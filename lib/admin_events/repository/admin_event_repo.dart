@@ -31,7 +31,61 @@ class AdminEventRepo {
 
     if (result.statusCode != 200) {
       print(result.statusCode);
-      throw Exception("Could not post feed!");
+      throw Exception("Could not post event!");
+    } else {
+      print(result.statusCode);
+      return AdminEventsModel.fromJson(response);
+    }
+  }
+
+  Future<AdminEventsModel> updateEvents(String id) async {
+    final result = await http.patch(
+      Uri.parse("http://localhost:5000/events/$id"),
+      headers: {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(
+        <String, String>{
+          "id": id,
+        },
+      ),
+    );
+
+    var response = jsonDecode(result.body);
+    print(response);
+
+    if (result.statusCode != 201) {
+      print(result.statusCode);
+      throw Exception("Could not update event!");
+    } else {
+      print(result.statusCode);
+      return AdminEventsModel.fromJson(response);
+    }
+  }
+
+  Future<AdminEventsModel> deleteEvent(String id) async {
+    final result = await http.delete(
+      Uri.parse("http://localhost:5000/events/$id"),
+      headers: {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(
+        <String, String>{
+          "id": id,
+        },
+      ),
+    );
+
+    var response = jsonDecode(result.body);
+    print(response);
+
+    if (result.statusCode != 201) {
+      print(result.statusCode);
+      throw Exception("Could not delete evnet!");
     } else {
       print(result.statusCode);
       return AdminEventsModel.fromJson(response);

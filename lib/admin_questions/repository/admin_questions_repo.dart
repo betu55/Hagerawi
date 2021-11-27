@@ -8,7 +8,7 @@ class AdminQuestionRepo {
   Future<AdminQuestionsModel> postQuestions(
       String question, String choices, String answers, String imgUrl) async {
     // declare from where we will be getting our list of objects
-    
+
     final result = await http.post(
       Uri.parse("http://localhost:5000/questions/"),
       headers: {
@@ -33,5 +33,51 @@ class AdminQuestionRepo {
       throw Exception("Could not post feed!");
     else
       return AdminQuestionsModel.fromJson(response);
+  }
+
+  Future<AdminQuestionsModel> updateQuestions(String id) async {
+    final result = await http.patch(
+      Uri.parse('http://localhost:5000/questions/${id}'),
+      headers: {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(
+        <String, String>{
+          "id": id,
+        },
+      ),
+    );
+
+    var res = jsonDecode(result.body);
+
+    if (res == null)
+      throw Exception("Could not update question");
+    else
+      return AdminQuestionsModel.fromJson(res);
+  }
+
+  Future<AdminQuestionsModel> deleteQuestions(String id) async {
+    final result = await http.delete(
+      Uri.parse('http://localhost:5000/questions/${id}'),
+      headers: {
+        "content-type": "application/json",
+        "Accept": "application/json",
+        "Access-Control_Allow_Origin": "*"
+      },
+      body: jsonEncode(
+        <String, String>{
+          "id": id,
+        },
+      ),
+    );
+
+    var res = jsonDecode(result.body);
+
+    if (res == null)
+      throw Exception("Could not delete question");
+    else
+      return AdminQuestionsModel.fromJson(res);
   }
 }

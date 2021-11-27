@@ -24,3 +24,21 @@ class PostEventsEvent extends AdminEventsEvent {
   List<Object?> get props =>
       [imgUrl, attendees, postedBy, title, location, content];
 }
+
+class UpdateEventsEvent extends AdminEventsEvent {
+  final String id;
+
+  UpdateEventsEvent(this.id);
+
+  @override
+  List<Object?> get props => [id];
+}
+
+class DeleteEventsEvent extends AdminEventsEvent {
+  final String id;
+
+  DeleteEventsEvent(this.id);
+
+  @override
+  List<Object?> get props => [id];
+}

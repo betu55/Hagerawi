@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event_and_state.dart';
+import 'package:hagerawi_app/admin_feeds/bloc/admin_feeds_event.dart';
 import 'package:hagerawi_app/admin_feeds/models/admin_feeds_model.dart';
 import 'package:hagerawi_app/admin_feeds/repository/admin_feeds_repo.dart';
+
+import 'admin_feeds_state.dart';
 
 class AdminFeedBloc extends Bloc<AdminFeedEvent, AdminFeedState> {
   AdminFeedRepo feedRepo;
@@ -29,6 +31,36 @@ class AdminFeedBloc extends Bloc<AdminFeedEvent, AdminFeedState> {
       } catch (e) {
         print(e);
         yield UploadingFailed(errorMsg: e.toString());
+      }
+    }
+
+    if (event is UpdateFeedEvent) {
+      final id = event.id;
+
+      yield FeedsUploading();
+
+      try {
+        AdminFeedsModel feed = await feedRepo.updateFeed(id);
+
+        yield FeedOperationSuccess(feed);
+      } catch (e) {
+        print(e);
+        yield FeedOperationFailed();
+      }
+    }
+
+    if (event is DeleteFeedEvent) {
+      final id = event.id;
+
+      yield FeedsUploading();
+
+      try {
+        AdminFeedsModel feed = await feedRepo.deleteFeed(id);
+
+        yield FeedOperationSuccess(feed);
+      } catch (e) {
+        print(e);
+        yield FeedOperationFailed();
       }
     }
   }

@@ -32,5 +32,31 @@ class AdminQuestionBloc extends Bloc<AdminQuestionEvent, AdminQuestionState> {
         yield UploadingFailed(errorMsg: e.toString());
       }
     }
+
+    if (event is UpdateQuestionEvent) {
+      final String id = event.id;
+      try {
+        AdminQuestionsModel theQuestion =
+            await questionRepo.updateQuestions(id);
+
+        yield QuestionOperationSuccess(theQuestion);
+      } catch (e) {
+        print(e);
+        yield QuestionOperationFailed();
+      }
+    }
+
+    if (event is DeleteQuestionEvent) {
+      final String id = event.id;
+      try {
+        AdminQuestionsModel theQuestion =
+            await questionRepo.deleteQuestions(id);
+
+        yield QuestionOperationSuccess(theQuestion);
+      } catch (e) {
+        print(e);
+        yield QuestionOperationFailed();
+      }
+    }
   }
 }

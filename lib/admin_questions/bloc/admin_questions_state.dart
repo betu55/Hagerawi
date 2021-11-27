@@ -1,3 +1,5 @@
+import 'package:hagerawi_app/admin_questions/model/admin_questions_model.dart';
+
 abstract class AdminQuestionState {}
 
 class QuestionsLoading extends AdminQuestionState {}
@@ -19,3 +21,11 @@ class UploadingFailed extends AdminQuestionState {
   UploadingFailed({required this.errorMsg});
   String get getErrorMsg => errorMsg;
 }
+
+class QuestionOperationSuccess extends AdminQuestionState {
+  final AdminQuestionsModel questions;
+
+  QuestionOperationSuccess(this.questions);
+}
+
+class QuestionOperationFailed extends AdminQuestionState {}

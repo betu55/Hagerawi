@@ -1,3 +1,5 @@
+import 'package:hagerawi_app/admin_events/model/admin_events_model.dart';
+
 abstract class AdminEventState {}
 
 class EventsUploading extends AdminEventState {}
@@ -19,6 +21,14 @@ class EventsUploaded extends AdminEventState {
     this.content,
   );
 }
+
+class EventsOperationSuccess extends AdminEventState {
+  final AdminEventsModel events;
+
+  EventsOperationSuccess(this.events);
+}
+
+class EventsOperationFailed extends AdminEventState {}
 
 class AdminEventNotUploaded extends AdminEventState {}
 
